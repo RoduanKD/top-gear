@@ -12,7 +12,8 @@
             <div class="col-md-6">
                 <div class="full">
                     <div class="contact_form">
-                        <form>
+                        <form action="/contact-us" method="POST">
+                            @csrf
                             <fieldset class="row">
                                 <div class="col-md-12">
                                     <div class="full field">
@@ -26,12 +27,12 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="full field">
-                                        <input type="text" placeholder="Phone" name="number" />
+                                        <input type="text" placeholder="Phone" name="phone" />
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="full field">
-                                        <textarea placeholder="Message"></textarea>
+                                        <textarea placeholder="Message" name="content"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
