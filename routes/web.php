@@ -39,3 +39,9 @@ Route::get('/admin/messages', function () {
 
     return view('messages.index', compact('messages'));
 });
+
+Route::get('/admin/messages/{id}', function ($id) {
+    $message = Message::find($id);
+
+    return view('messages.show', compact('message'));
+});
