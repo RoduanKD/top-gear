@@ -55,5 +55,11 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
     </section>
     <!-- end section -->
+=======
+    </div>
+</section>
+<!-- end section -->
+>>>>>>> 374cef549ea6e0b2285d42cd57a5b96633938afc

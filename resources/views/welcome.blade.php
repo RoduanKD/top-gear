@@ -4,9 +4,7 @@
 
 @section('content')
     @include('sections.home')
-
     @include('sections.about')
-
     @include('sections.our_cars')
 
     @include('sections.why_choose_us')

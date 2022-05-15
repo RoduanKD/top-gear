@@ -39,6 +39,7 @@
     <!-- end loader -->
 
     <div class="wrapper">
+        @include('partials.navbar')
         @include('partials.sidebar')
 
         <div id="content">
