@@ -17,7 +17,7 @@
                     @foreach ($messages as $message)
                         <tr>
                             <td>{{ $message->id }}</td>
-                            <td><a href="">{{ $message->name }}</a></td>
+                            <td><a href="{{ route('messages.show', $message) }}">{{ $message->name }}</a></td>
                             <td>{{ $message->phone }}</td>
                             <td>{{ $message->created_at }}</td>
                         </tr>

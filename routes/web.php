@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 
-Route::view('/about', 'pages.about');
-Route::view('/contact-us', 'pages.contact');
+Route::view('/about', 'pages.about')->name('about');
+Route::view('/contact-us', 'pages.contact')->name('contact');
 
 Route::post('/contact-us', function (Request $request) {
     $request->validate([
@@ -45,10 +45,8 @@ Route::get('/admin/messages', function () {
     $messages = Message::all();
 
     return view('messages.index', compact('messages'));
-});
+})->name('messages.store');
 
-Route::get('/admin/messages/{id}', function ($id) {
-    $message = Message::find($id);
-
+Route::get('/admin/messages/{message}', function (Message $message) {
     return view('messages.show', compact('message'));
-});
+})->name('messages.show');
