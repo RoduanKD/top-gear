@@ -24,6 +24,13 @@ Route::view('/about', 'pages.about');
 Route::view('/contact-us', 'pages.contact');
 
 Route::post('/contact-us', function (Request $request) {
+    $request->validate([
+        'name' => 'required|string|min:3|max:255',
+        'email' => 'required|email',
+        'phone' => 'required|starts_with:9639|digits_between:12,12',
+        'content' => 'required|string|min:5',
+    ]);
+
     $message = new Message();
     $message->name = $request->name;
     $message->email = $request->email;

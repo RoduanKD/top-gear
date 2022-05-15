@@ -1,6 +1,15 @@
 <!-- section -->
 <section id="contact" class="dark_bg_blue layout_padding cross_layout padding_top_0 margin_top_0">
     <div class="container">
+        {{-- @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif --}}
         <div class="row">
             <div class="col-md-12">
                 <div class="full center">
@@ -17,22 +26,34 @@
                             <fieldset class="row">
                                 <div class="col-md-12">
                                     <div class="full field">
-                                        <input type="text" placeholder="Your Name" name="name" />
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Your Name" name="name" value="{{ old('name') }}" />
+                                        @error('name')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="full field">
-                                        <input type="email" placeholder="Email" name="email" />
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}" />
+                                        @error('email')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="full field">
-                                        <input type="text" placeholder="Phone" name="phone" />
+                                        <input type="text" class="form-control @error('phone') is-invalid @enderror" placeholder="Phone" name="phone" value="{{ old('phone') }}" />
+                                        @error('phone')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="full field">
-                                        <textarea placeholder="Message" name="content"></textarea>
+                                        <textarea class="form-control @error('content') is-invalid @enderror" placeholder="Message" name="content">{{ old('content') }}</textarea>
+                                        @error('content')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12">
