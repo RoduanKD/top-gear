@@ -3,8 +3,7 @@
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
-use App\Models\Message;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +25,12 @@ Route::view('/about', 'pages.about');
 Route::view('/contact', 'pages.contact');
 
 Route::post('/contact-us', function(Request $request){
+$request->validate([
+    'name' => 'required',
+    'email' => 'required',
+    'phone' => 'required',
+    'content' => 'required'
+]);
 
 $message= new Message();
 $message->name = $request->name;
