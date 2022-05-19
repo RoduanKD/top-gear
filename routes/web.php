@@ -26,10 +26,10 @@ Route::view('/contact', 'pages.contact');
 
 Route::post('/contact-us', function(Request $request){
 $request->validate([
-    'name' => 'required',
-    'email' => 'required',
-    'phone' => 'required',
-    'content' => 'required'
+    'name' => 'required|min:3|max:255|string',
+    'email' => 'required|email',
+    'phone' => 'required|starts_with:9639|digits_between:12,12',
+    'content' => 'required|string|min:5'
 ]);
 
 $message= new Message();
