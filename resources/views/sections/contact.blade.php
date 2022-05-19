@@ -21,7 +21,7 @@
             <div class="col-md-6">
                 <div class="full">
                     <div class="contact_form">
-                        <form action="/contact-us" method="POST">
+                        <form action="{{route('contact')}}" method="POST">
                             @csrf
                             <fieldset class="row">
                                 <div class="col-md-12">

@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 
-Route::view('/about', 'pages.about');
+Route::view('/about', 'pages.about')->name('about');
 
-Route::view('/contact', 'pages.contact');
+Route::view('/contact-us', 'pages.contact')->name('contact');
 
 Route::post('/contact-us', function(Request $request){
 $request->validate([
@@ -38,17 +38,19 @@ $message->email = $request->email;
 $message->content = $request->content;
 $message->phone = $request->phone;
 $message->save();
- return redirect("/#contact-us");
+ return redirect("/#contact");
 });
 
 Route::get('/admin/messages', function () {
     $messages = Message::all();
 
     return view('messages.index', compact('messages'));
-});
-
-Route::get('/admin/messages/{id}', function ($id) {
-    $message = Message::find($id);
+})->name('messages.store');
+Route::get('/admin/messages/{message}', function (Message $message) {
+    //لما حطيت نوعها مسج صار فيني استغني عن findOrFail ^
+    //هاد الشي اسمو implicit Binding
+    // $message = Message::find($id);
+    // $message = Message::findOrFail($id);
 
     return view('messages.show', compact('message'));
-});
+})->name('message.show');
