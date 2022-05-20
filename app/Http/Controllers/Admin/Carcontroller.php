@@ -15,9 +15,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
-
-        return view('admin.cars.index', compact('cars'));
+        //
     }
 
     /**
@@ -38,15 +36,16 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->is_new);
         $request->validate([
             'brand'         => 'required',
             'model'         => 'required',
             'price'         => 'required|numeric|min:100000',
-            'colors'        => 'required',
+            'colors'         => 'required',
             'gear_type'     => 'required',
             'year'          => 'required',
             'country'       => 'required',
-            'is_new'        => 'boolean|nullable',
+            // 'is_new'        => 'required|boolean',
             'description'   => 'required',
         ]);
 
@@ -58,7 +57,7 @@ class CarController extends Controller
         $car->gear_type = $request->gear_type;
         $car->year = $request->year;
         $car->country = $request->country;
-        $car->is_new = $request->is_new;
+        $car->is_new = true;
         $car->description = $request->description;
         $car->save();
 
@@ -73,8 +72,9 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
-        return view('cars.show', compact('car'));
+        return view('cars.show', compact($car));
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -83,7 +83,7 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
-        return view('admin.cars.edit', compact('car'));
+        //
     }
 
     /**
@@ -95,30 +95,7 @@ class CarController extends Controller
      */
     public function update(Request $request, Car $car)
     {
-        $request->validate([
-            'brand'         => 'required|min:3',
-            'model'         => 'required',
-            'price'         => 'required|numeric|min:100000',
-            'colors'        => 'required',
-            'gear_type'     => 'required',
-            'year'          => 'required',
-            'country'       => 'required',
-            'is_new'        => 'boolean|nullable',
-            'description'   => 'required',
-        ]);
-
-        $car->brand = $request->brand;
-        $car->model = $request->model;
-        $car->price = $request->price;
-        $car->colors = $request->colors;
-        $car->gear_type = $request->gear_type;
-        $car->year = $request->year;
-        $car->country = $request->country;
-        $car->is_new = $request->is_new;
-        $car->description = $request->description;
-        $car->save();
-
-        return redirect()->route('cars.index');
+        //
     }
 
     /**
@@ -129,8 +106,6 @@ class CarController extends Controller
      */
     public function destroy(Car $car)
     {
-        $car->delete();
-
-        return redirect()->route('cars.index');
+        //
     }
 }
