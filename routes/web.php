@@ -19,6 +19,11 @@ Route::get('/', [HomeController::class, 'welcome'])->name('home');
 Route::view('/about', 'pages.about')->name('about');
 Route::view('/contact-us', 'pages.contact')->name('contact');
 
+Route::get('/', [HomeController::class, 'welcome'])->name('home');
+
+Route::view('/about', 'pages.about')->name('about');
+Route::view('/contact-us', 'pages.contact')->name('contact');
+
 Route::post('/contact-us', [MessageController::class, 'store'])->name('messages.store');
 
 
