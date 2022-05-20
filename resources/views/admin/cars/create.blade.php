@@ -9,14 +9,16 @@
                 @csrf
                 <div class="form-group">
                     <label for="brand">Brand</label>
-                    <input type="text" class="form-control @error('brand') is-invalid @enderror" id="brand" name="brand" placeholder="Audi">
+                    <input type="text" class="form-control @error('brand') is-invalid @enderror" id="brand" name="brand"
+                        placeholder="Audi" value="{{ old('brand') }}">
                     @error('brand')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="model">Model</label>
-                    <input type="text" class="form-control @error('model') is-invalid @enderror" id="model" name="model" placeholder="A4">
+                    <input type="text" class="form-control @error('model') is-invalid @enderror" id="model" name="model"
+                        placeholder="A4" value="{{ old('model') }}">
                     @error('model')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -27,7 +29,9 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">SYP</span>
                         </div>
-                        <input name="price" id="price" type="number" min="10000000" step="500000" class="form-control @error('price') is-invalid @enderror" value="25000000">
+                        <input name="price" id="price" type="number" min="10000000" step="500000"
+                            class="form-control @error('price') is-invalid @enderror"
+                            value="{{ old('price', 25000000) }}">
                     </div>
                     @error('price')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -56,7 +60,8 @@
 
                 <div class="form-group">
                     <label for="year">Year</label>
-                    <input name="year" id="year" type="number" min="1880" class="form-control @error('year') is-invalid @enderror">
+                    <input name="year" id="year" type="number" min="1880"
+                        class="form-control @error('year') is-invalid @enderror" value="{{ old('year') }}">
                     @error('year')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -64,14 +69,16 @@
 
                 <div class="form-group">
                     <label for="country">Country</label>
-                    <input type="text" class="form-control @error('country') is-invalid @enderror" id="country" name="country" placeholder="Germany">
+                    <input type="text" class="form-control @error('country') is-invalid @enderror" id="country"
+                        name="country" placeholder="Germany" value="{{ old('country') }}">
                     @error('country')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="form-check">
-                    <input name="is_new" type="checkbox" class="form-check-input @error('is_new') is-invalid @enderror" id="is_new" value="true">
+                    <input name="is_new" type="checkbox" class="form-check-input @error('is_new') is-invalid @enderror"
+                        id="is_new" value="1">
                     <label class="form-check-label" for="is_new">This is a new car?</label>
                     @error('is_new')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -80,7 +87,8 @@
 
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" rows="5"></textarea>
+                    <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
+                        rows="5">{{ old('description') }}</textarea>
                     @error('description')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
