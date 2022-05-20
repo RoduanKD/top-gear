@@ -28,6 +28,6 @@ Route::get('/admin/messages', [MessageController::class, 'index'])->name('messag
 Route::get('/admin/messages/{message}', [MessageController::class, 'show'])->name('messages.show');
 
 Route::get('/admin/cars', [CarController::class, 'index'])->name('cars.index');
-Route::get('/admin/cars/{car}', [CarController::class, 'show'])->name('cars.show');
 Route::get('/admin/cars/create', [CarController::class, 'create'])->name('cars.create');
+Route::get('/admin/cars/{car}', [CarController::class, 'show'])->name('cars.show');
 Route::post('/admin/cars', [CarController::class, 'store'])->name('cars.store');
