@@ -1,16 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Add a new car')
+@section('title', 'Edit car | ' . $car->brand . ' ' . $car->model)
 
 @section('content')
     <section class="section py-10" style="padding-bottom: 50px">
         <div class="container">
-            <form action="{{ route('cars.store') }}" method="POST">
+            <form action="{{ route('cars.update', $car) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="form-group">
                     <label for="brand">Brand</label>
                     <input type="text" class="form-control @error('brand') is-invalid @enderror" id="brand" name="brand"
-                        placeholder="Audi" value="{{ old('brand') }}">
+                        placeholder="Audi" value="{{ old('brand', $car->brand) }}">
                     @error('brand')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -18,7 +19,7 @@
                 <div class="form-group">
                     <label for="model">Model</label>
                     <input type="text" class="form-control @error('model') is-invalid @enderror" id="model" name="model"
-                        placeholder="A4" value="{{ old('model') }}">
+                        placeholder="A4" value="{{ old('model', $car->model) }}">
                     @error('model')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -31,7 +32,7 @@
                         </div>
                         <input name="price" id="price" type="number" min="10000000" step="500000"
                             class="form-control @error('price') is-invalid @enderror"
-                            value="{{ old('price', 25000000) }}">
+                            value="{{ old('price', $car->price, 25000000) }}">
                     </div>
                     @error('price')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -61,7 +62,7 @@
                 <div class="form-group">
                     <label for="year">Year</label>
                     <input name="year" id="year" type="number" min="1880"
-                        class="form-control @error('year') is-invalid @enderror" value="{{ old('year') }}">
+                        class="form-control @error('year') is-invalid @enderror" value="{{ old('year', $car->year) }}">
                     @error('year')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -70,7 +71,7 @@
                 <div class="form-group">
                     <label for="country">Country</label>
                     <input type="text" class="form-control @error('country') is-invalid @enderror" id="country"
-                        name="country" placeholder="Germany" value="{{ old('country') }}">
+                        name="country" placeholder="Germany" value="{{ old('country', $car->country) }}">
                     @error('country')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -88,7 +89,7 @@
                 <div class="form-group">
                     <label for="description">Description</label>
                     <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
-                        rows="5">{{ old('description') }}</textarea>
+                        rows="5">{{ old('description', $car->description) }}</textarea>
                     @error('description')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
