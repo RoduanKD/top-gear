@@ -29,6 +29,7 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+      @stack('css')
 </head>
 
 <body class="main-layout">
@@ -183,4 +184,5 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap">
     </script>
     <!-- end google map js -->
+    @stack('js')
 </body>

@@ -30,7 +30,6 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
     Route::get('messages', [MessageController::class, 'index'])->name('messages.index');
     Route::get('messages/{message}', [MessageController::class, 'show'])->name('messages.show');
 
-
     Route::resource('cars', CarController::class);
     Route::resource('categories', CategoryController::class);
 });

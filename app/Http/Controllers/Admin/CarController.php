@@ -50,12 +50,11 @@ class CarController extends Controller
             'year'          => 'required',
             'country'       => 'required',
             'is_new'        => 'boolean|nullable',
-            'description'   => 'required',
+            'description'   => 'required|string',
         ]);
 
-        $car = new Car;
+        // $validated['description'] = clean($validated['description']);
         $car = Car::create($validated);
-
 
         return redirect()->route('admin.cars.index');
     }

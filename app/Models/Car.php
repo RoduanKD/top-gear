@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Mews\Purifier\Casts\CleanHtml;
 
 class Car extends Model
 {
@@ -17,6 +18,7 @@ class Car extends Model
 
     protected $casts = [
         'is_new' => 'boolean',
+        'description' => CleanHtml::class,
     ];
 
     public function category()
