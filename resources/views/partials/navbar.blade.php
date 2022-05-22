@@ -1,23 +1,38 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container">
-        <a class="navbar-brand" href="#">TOPGEAR</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+<nav class="navbar navbar-expand-lg text-white ">
+    <div class="col-lg-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 logo_section">
+                    <div class="full">
+                        <div class="center-desk">
+                            <div class="logo"> <a href="index.html"><img src="/images/logo.png" alt="#"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="right_header_info">
+                        <ul>
+                            <li><img style="margin-right: 15px;" src="/images/phone_icon.png" alt="#" /><a
+                                    href="#">987-654-3210</a></li>
+                            <li><img style="margin-right: 15px;" src="/images/mail_icon.png" alt="#" /><a
+                                    href="#">demo@gmail.com</a></li>
+                            <li><img src="/images/search_icon.png" alt="#" /></li>
+                            <li>
+                                <button type="button" id="sidebarCollapse">
+                                    <img src="/images/menu_icon.png" alt="#" />
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </nav>
+<style>
+    .navbar {
+        background-color: #011f9e;
+    }
+
+</style>
