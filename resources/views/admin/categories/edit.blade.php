@@ -1,18 +1,19 @@
 @extends('layouts.app')
 
-@section('title', 'Add a new category')
+@section('title', 'Edit category')
 
 @section('content')
     <section class="section py-10" style="padding-bottom: 50px">
         <div class="container my-5">
-            <form action="{{ route('categories.store') }}" method="POST">
+            <form action="{{ route('categories.update' ,$category) }}" method="POST">
                 @csrf
+                 @method('PUT')
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-                                placeholder="Economy" value="{{ old('name') }}">
+                                placeholder="Economy" value="{{ old('name', $category->name) }}">
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -27,7 +28,7 @@
                                 </div>
                                 <input name="capacity" id="capacity" type="number" min="2"
                                     class="form-control @error('capacity') is-invalid @enderror"
-                                    value="{{ old('capacity', 4) }}">
+                                    value="{{ old('capacity', $category->capacity) }}">
                             </div>
 
                             @error('capacity')
