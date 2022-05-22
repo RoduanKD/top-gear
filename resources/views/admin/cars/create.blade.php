@@ -24,6 +24,17 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label>Car category</label>
+                    <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected':'' }}>{{ $category->name }} ({{ $category->capacity }})</option>
+                        @endforeach
+                    </select>
+                    @error('category_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label for="price">Price</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -46,7 +57,6 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-
                 <div class="form-group">
                     <label>Gear Type</label>
                     <select name="gear_type" class="form-control @error('gear_type') is-invalid @enderror">
