@@ -4,6 +4,9 @@
     <div class="container my-5">
         <div class="full">
             <h1>Here's Your Cars !</h1>
+             <div class="col">
+        <h3><a href="{{ route('cars.create') }}" class="text-primary stretched-link">Add more!</a></h3>
+             </div>
         </div>
 
         <div class="row">

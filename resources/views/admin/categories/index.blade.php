@@ -4,6 +4,9 @@
     <div class="container my-5">
         <div class="full">
             <h1>Here's Your Categories !</h1>
+             <div class="col">
+        <h3><a href="{{ route('categories.create') }}" class="text-primary stretched-link">Add more!</a></h3>
+             </div>
         </div>
 
         <div class="row">
@@ -13,11 +16,12 @@
 
                     <div class="card cardhov my-2" style="width: 18rem;">
                         <img class="card-img-top"
-                            src="https://d.newsweek.com/en/full/1949339/tesla-model-s.jpg?w=1600&h=900&q=88&f=e5d09ec2030e76aba072a36c90568476"
+                            src="https://i0.wp.com/52.0.170.206/wp-content/uploads/2021/09/Types-of-Car.jpg?fit=1280%2C720"
                             alt="Card image cap">
                         <div class="card-body">
                            <h3 class="card-title">{{ $category->name }}</h3>
                                 <p class="card-text">Capacity: {{ $category->capacity }}</p>
+                                <a href="..."  class="text-primary stretched-link"> show Cars in Category</a>
                                 <div class="row my-2">
                                 <div class="col">
                                     <form action="{{ route('categories.edit', $category) }}" method="PUT"> @csrf <button
