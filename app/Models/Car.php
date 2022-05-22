@@ -9,6 +9,16 @@ class Car extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
+    protected $attributes = [
+        'is_new' => false,
+    ];
+
+    protected $casts = [
+        'is_new' => 'boolean',
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
