@@ -16,7 +16,7 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Car::query();
+        $query = Car::latest();
 
         if ($request->filled('category')) {
             $query->where('category_id', $request->category);
@@ -30,7 +30,7 @@ class CarController extends Controller
             });
         }
 
-        $cars = $query->get();
+        $cars = $query->paginate(1);
         $categories = Category::has('cars')->get();
 
         return view('public.cars.index', compact('cars', 'categories'));

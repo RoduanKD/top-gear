@@ -27,6 +27,9 @@
                     </div>
                 @endforeach
             </div>
+            <div class="row justify-content-center">
+                {{ $cars->withQueryString() }}
+            </div>
         </div>
     </div>
 @endsection
