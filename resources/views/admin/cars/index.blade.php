@@ -78,6 +78,17 @@
             @endforeach
         </div>
     </div>
-    @endforeach
-</div>
 @endsection
+
+<style scoped>
+    .card:hover {
+        border-radius: 0.75rem;
+        border-color: #161C34;
+        transition-delay: 0.1s
+    }
+
+    h1 {
+        color: #161C34;
+    }
+
+</style>
