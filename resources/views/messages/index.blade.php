@@ -4,9 +4,9 @@
 
 @section('content')
     <section>
-        <div class="container">
+        <div class="container my-5">
             <h1>Received Messages</h1>
-            <table class="table">
+            <table class="table table-hover ">
                 <thead>
                     <th>id</th>
                     <th>name</th>
@@ -17,13 +17,15 @@
                     @foreach ($messages as $message)
                         <tr>
                             <td>{{ $message->id }}</td>
-                            <td><a href="{{ route('messages.show', $message) }}">{{ $message->name }}</a></td>
+                            <td><a href="{{ route('messages.show', $message) }}" >{{ $message->name }}</a></td>
                             <td>{{ $message->phone }}</td>
                             <td>{{ $message->created_at }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+
         </div>
     </section>
 @endsection
+
