@@ -16,16 +16,21 @@ class CarController extends Controller
      */
     public function index(Request $request)
     {
-        $cars = Car::where('category_id', $request->category)
-        ->where(function ($q) use ($request) {
-            $q->Where('brand', 'like', "%$request->q%")
-            ->orWhere('model', 'like', "%$request->q%")
-            ->orWhere('colors', 'like', "%$request->q%");
-        });
+        $query = Car::query();
 
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
 
-        $cars = $cars->get();
+        if ($request->filled('q')) {
+            $query->where(function ($q) use ($request) {
+                $q->Where('brand', 'like', "%$request->q%")
+                ->orWhere('model', 'like', "%$request->q%")
+                ->orWhere('colors', 'like', "%$request->q%");
+            });
+        }
 
+        $cars = $query->get();
         $categories = Category::has('cars')->get();
 
         return view('public.cars.index', compact('cars', 'categories'));
