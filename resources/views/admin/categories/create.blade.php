@@ -5,7 +5,7 @@
 @section('content')
     <section class="section py-10" style="padding-bottom: 50px">
         <div class="container">
-            <form action="{{ route('categories.store') }}" method="POST">
+            <form action="{{ route('admin.categories.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="name">Name</label>

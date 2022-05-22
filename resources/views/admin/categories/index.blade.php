@@ -16,7 +16,7 @@
                     </div>
                     @empty
                     <div class="col">
-                        There are no categories now, <a href="{{ route('categories.create') }}">please create one</a>!
+                        There are no categories now, <a href="{{ route('admin.categories.create') }}">please create one</a>!
                     </div>
                 @endforelse
             </div>

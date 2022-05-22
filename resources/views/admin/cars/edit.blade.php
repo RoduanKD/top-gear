@@ -5,7 +5,7 @@
 @section('content')
     <section class="section py-10" style="padding-bottom: 50px">
         <div class="container">
-            <form action="{{ route('cars.update', $car) }}" method="POST">
+            <form action="{{ route('admin.cars.update', $car) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
