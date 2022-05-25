@@ -67,7 +67,7 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
-        return view('cars.show', compact('car'));
+        return view('admin.cars.show', compact('car'));
     }
 
     /**
