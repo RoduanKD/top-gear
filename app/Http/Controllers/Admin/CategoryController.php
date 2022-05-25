@@ -80,7 +80,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name'       =>  'required|min:4|max:255',
-            'seats_num'       =>  'required|numeric|min:2',
+            'capacity'       =>  'required|numeric|min:2',
         ]);
 
         $category->update($validated);
