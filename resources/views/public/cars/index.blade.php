@@ -7,13 +7,13 @@
                 <div class="col-12">
                     <form action="">
                         <input type="hidden" name="q" value="{{ request()->q }}">
-                        <select name="category">
+                        <select name="category" class="custom-select col-sm" style="width: 25%">
                             <option value="">All</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}" {{ $category->id == request()->category ? 'selected':'' }}>{{ $category->name }} ({{ $category->cars->count() }})</option>
                             @endforeach
                         </select>
-                        <button type="submit">Filter</button>
+                        <button type="submit" class="btn btn-sm btn-success">Filter</button>
                     </form>
                 </div>
             </div>
@@ -21,8 +21,23 @@
                 @foreach ($cars as $car)
                     <div class="col-md-4">
                         <a href="{{ route('cars.show', $car) }}">
-                            <h4>{{ $car->brand }} {{ $car->model }}</h4>
-                            <h6>{{ $car->category->name }}</h6>
+                            <h4 style="color: dodgerblue; font-size: 14pt; font-weight: bol;">{{ $car->brand }} {{ $car->model }}</h4>
+                                <table class="table">
+                                    <thead>
+                                        <th colspan="2" class="text-center">Category</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><b>Name : </b> </td>
+                                            <td>{{ $car->category->name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Capacity : </b> </td>
+                                            <td>{{ $car->category->capacity }}</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
                         </a>
                     </div>
                 @endforeach

@@ -1,25 +1,53 @@
 @extends('layouts.app')
+
 @section('title', 'Categories')
 
 @section('content')
     <section class="section layout_padding">
         <div class="container">
-            <div class="row">
-                @forelse ($categories as $category)
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="card-title">{{ $category->name }} ({{ $category->cars->count() }})</h3>
-                                <p class="card-text">Capacity: {{ $category->capacity }}</p>
-                            </div>
-                        </div>
-                    </div>
+            <h1>Received Categories</h1>
+            <div class="float-right">
+                <form action="{{ route('admin.categories.create') }}" method="GET"> @csrf <button class="btn btn-success"    type="submit" value="add">Add</button> </form>
+            </div><br><br>
+            <table class="table">
+                <thead>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>cars</th>
+                        <th>capacity</th>
+                        <th colspan="2">action</th>
+                </thead>
+                <tbody>
+                    @forelse ($categories as $category)
+                    <tr>
+                        <td>{{$category->id}}</td>
+                        <td><a href="{{route('admin.categories.show',$category->id)}}">{{$category->name}} </a></td>
+                        <td><a href="{{route('admin.categories.show',$category->id)}}">({{ $category->cars->count() }}) </a></td>
+                        <td>{{$category->capacity}}</td>
+                            <td class="text-center row">
+                                <div class="btn-group" role="group">
+                                    <div class="col-md-6 padding-right: 5px padding-left: 5px;">
+                                        <form action="{{ route('admin.categories.edit', $category) }}" method="GET">
+                                            @csrf
+                                            <button type="submit" value="edit" class="btn btn-sm btn-warning">Edit</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6 padding-right: 5px padding-left: 5px;">
+                                        <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
+                                            @csrf @method('DELETE')
+                                            <button type="submit" value="delete" class="btn btn-sm btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                    </tr>
                     @empty
-                    <div class="col">
-                        There are no categories now, <a href="{{ route('admin.categories.create') }}">please create one</a>!
+                    <div >
+                        <span style="color: red">There are no categories now,</span> <a href="{{ route('admin.categories.create') }}" style="font-weight: bold">please create one</a>!
                     </div>
                 @endforelse
-            </div>
+                </tbody>
+            </table>
         </div>
     </section>
 @endsection
