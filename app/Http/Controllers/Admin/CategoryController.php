@@ -44,7 +44,7 @@ class CategoryController extends Controller
 
         $category = Category::create($validated);
 
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -85,7 +85,7 @@ class CategoryController extends Controller
         ]);
 
         $category->update($validated);
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -98,6 +98,6 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 }

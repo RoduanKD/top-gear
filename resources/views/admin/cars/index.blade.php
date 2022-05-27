@@ -4,9 +4,9 @@
     <div class="container my-5">
         <div class="full">
             <h1>Here's Your Cars !</h1>
-             <div class="col">
-        <h3><a href="{{ route('cars.create') }}" class="text-primary stretched-link">Add more!</a></h3>
-             </div>
+            <div class="col">
+                <h3><a href="{{ route('admin.cars.create') }}" class="text-primary stretched-link">Add more!</a></h3>
+            </div>
         </div>
 
         <div class="row">
@@ -19,18 +19,22 @@
                             alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{ $car->brand }} {{ $car->model }}</h5>
-                            <p class="card-text">{{ $car->description }}</p>
+                            <p class="card-text"> {{ $car->category->name }}
+                                <hr>
+                                {{ $car->description }}
+                            </p>
 
-                                <a href="{{ route('cars.show', $car) }}"  class="text-primary stretched-link"> show more info</a>
+                            <a href="{{ route('admin.cars.show', $car) }}" class="text-primary stretched-link"> show more
+                                info</a>
 
-                                <div class="row my-2">
+                            <div class="row my-2">
                                 <div class="col">
-                                    <form action="{{ route('cars.edit', $car) }}" method="PUT"> @csrf <button
+                                    <form action="{{ route('admin.cars.edit', $car) }}" method="PUT"> @csrf <button
                                             class="btn ma-2" type="submit"
                                             style="background-color: #161C34; color:white;">Edit</button> </form>
                                 </div>
                                 <div class="col">
-                                    <form action="{{ route('cars.destroy', $car) }}" method="POST">
+                                    <form action="{{ route('admin.cars.destroy', $car) }}" method="POST">
                                         @csrf
                                         @method('DELETE') <button style="background-color: #F36B2A; color:white;"
                                             class="btn mb-2" type="submit" data-toggle="modal"

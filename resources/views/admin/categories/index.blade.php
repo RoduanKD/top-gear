@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -5,12 +6,11 @@
         <div class="full">
             <h1>Here's Your Categories !</h1>
              <div class="col">
-        <h3><a href="{{ route('categories.create') }}" class="text-primary stretched-link">Add more!</a></h3>
+        <h3><a href="{{ route('admin.categories.create') }}" class="text-primary stretched-link">Add more!</a></h3>
              </div>
         </div>
 
         <div class="row">
-            {{-- tttttttttttttttt --}}
             @forelse ($categories as $category)
                 <div class="col-md-4">
 
@@ -19,17 +19,17 @@
                             src="https://i0.wp.com/52.0.170.206/wp-content/uploads/2021/09/Types-of-Car.jpg?fit=1280%2C720"
                             alt="Card image cap">
                         <div class="card-body">
-                           <h3 class="card-title">{{ $category->name }}</h3>
+                           <h3 class="card-title">{{ $category->name }}  ({{ $category->cars->count() }})</h3>
                                 <p class="card-text">Capacity: {{ $category->capacity }}</p>
                                 <a href="..."  class="text-primary stretched-link"> show Cars in Category</a>
                                 <div class="row my-2">
                                 <div class="col">
-                                    <form action="{{ route('categories.edit', $category) }}" method="PUT"> @csrf <button
+                                    <form action="{{ route('admin.categories.edit', $category) }}" method="PUT"> @csrf <button
                                             class="btn ma-2" type="submit"
                                             style="background-color: #161C34; color:white;">Edit</button> </form>
                                 </div>
                                 <div class="col">
-                                    <form action="{{ route('categories.destroy', $category) }}" method="POST">
+                                    <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
                                         @csrf
                                         @method('DELETE') <button style="background-color: #F36B2A; color:white;"
                                             class="btn mb-2" type="submit" data-toggle="modal"
@@ -58,7 +58,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">Close</button>
-                                                        <form action="{{ route('cars.destroy', $car) }}" method="POST">
+                                                        <form action="{{ route('admin.cars.destroy', $car) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE') <button
                                                                 style="background-color: #F36B2A; color:white;"
@@ -77,7 +77,7 @@
 
             @empty
                     <div class="col">
-                        There are no categories now, <a href="{{ route('categories.create') }}">please create one</a>!
+                        There are no categories now, <a href="{{ route('admin.categories.create') }}">please create one</a>!
                     </div>
                 @endforelse
         </div>

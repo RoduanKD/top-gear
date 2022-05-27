@@ -5,7 +5,7 @@
 @section('content')
     <section class="section py-10" style="padding-bottom: 50px">
         <div class="container my-5">
-            <form action="{{ route('categories.update' ,$category) }}" method="POST">
+            <form action="{{ route('admin.categories.update' ,$category) }}" method="POST">
                 @csrf
                  @method('PUT')
                 <div class="row">

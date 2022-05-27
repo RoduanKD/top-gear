@@ -17,7 +17,7 @@
                         do eiusmod..</p>
                 </div>
                 <div class="full button_section margin_top_30">
-                    <a href="#">See More</a>
+                    <a href="{{ route('cars.index') }}">See More</a>
                 </div>
             </div>
 

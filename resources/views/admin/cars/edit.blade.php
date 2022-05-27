@@ -5,7 +5,7 @@
 @section('content')
     <section class="section py-10" style="padding-bottom: 50px">
         <div class="container">
-            <form action="{{ route('cars.update', $car) }}" method="POST">
+            <form action="{{ route('admin.cars.update', $car) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="row">
@@ -50,18 +50,18 @@
                     </div>
                     <div class="col">
                         <div class="form-group">
-                            <label>Car colors</label>
-                            <select name="colors" class="form-control @error('colors') is-invalid @enderror">
-                                <option value="black">Black</option>
-                                <option value="blue">Blue</option>
-                                <option value="whtie">White</option>
-                                <option value="grey">Grey</option>
+                            <label>Car category</label>
+                            <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ old('category_id', $car->category_id) == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }} ({{ $category->capacity }})</option>
+                                @endforeach
                             </select>
-                            @error('colors')
+                            @error('category_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
-
                     </div>
                 </div>
 
@@ -104,15 +104,27 @@
                         </div>
                     </div>
                     <div class="col">
-                        <div class="form-check">
-                            <input name="is_new" type="checkbox"
-                                class="form-check-input @error('is_new') is-invalid @enderror" id="is_new" value="1">
-                            <label class="form-check-label" for="is_new">This is a new car?</label>
-                            @error('is_new')
+                        <div class="form-group">
+                            <label>Car colors</label>
+                            <select multiple name="colors" class="form-control @error('colors') is-invalid @enderror">
+                                <option selected value="black">Black</option>
+                                <option value="blue">Blue</option>
+                                <option value="whtie">White</option>
+                                <option value="grey">Grey</option>
+                            </select>
+                            @error('colors')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
+                </div>
+                <div class="form-check pb-5">
+                    <input name="is_new" type="checkbox" class="form-check-input @error('is_new') is-invalid @enderror"
+                        id="is_new" value="1">
+                    <label class="form-check-label" for="is_new">This is a new car?</label>
+                    @error('is_new')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -129,3 +141,5 @@
         </div>
     </section>
 @endsection
+
+
