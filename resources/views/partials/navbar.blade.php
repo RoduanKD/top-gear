@@ -11,7 +11,7 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('catgeroy.allcars') }}">Categories</a>
+                    <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="{{ route('cars.index') }}" method="GET">
