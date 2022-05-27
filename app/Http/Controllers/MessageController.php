@@ -37,4 +37,11 @@ class MessageController extends Controller
 
         return redirect('/#contact');
     }
+
+    public function destroy(Message $message)
+    {
+        $message->delete();
+        $messages = Message::all();
+        return view('messages.index',compact('messages'));
+    }
 }
