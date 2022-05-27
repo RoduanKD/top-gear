@@ -112,7 +112,7 @@
 
                 <div class="form-check">
                     <input name="is_new" type="checkbox" class="form-check-input @error('is_new') is-invalid @enderror"
-                        id="is_new" value="1">
+                        id="is_new" value="1" {{ old('is_new') ? 'checked' : '' }}>
                     <label class="form-check-label" for="is_new">This is a new car?</label>
                     @error('is_new')
                         <div class="invalid-feedback">{{ $message }}</div>
