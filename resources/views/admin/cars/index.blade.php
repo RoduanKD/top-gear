@@ -20,7 +20,6 @@
                     <th>year</th>
                     <th>country</th>
                     <th>is_new</th>
-                    <th>description</th>
                     <th colspan="2">action</th>
                 </thead>
                 <tbody>
@@ -34,7 +33,6 @@
                             <td>{{ $car->year }}</td>
                             <td>{{ $car->country }}</td>
                             <td>{{ $car->is_new }}</td>
-                            <td>{{ $car->description }}</td>
                             <td>
                                 <form action="{{ route('admin.cars.edit', $car) }}" method="GET"> @csrf <button
                                         class="btn btn-warning " type="submit" value="edit">edit</button> </form>
