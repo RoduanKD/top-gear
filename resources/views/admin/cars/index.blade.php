@@ -34,12 +34,13 @@
                             <td>{{ $car->country }}</td>
                             <td>{{ $car->is_new }}</td>
                             <td>
-                                <form action="{{ route('admin.cars.edit', $car) }}" method="GET"> @csrf <button
-                                        class="btn btn-warning " type="submit" value="edit">edit</button> </form>
+                                <a class="btn btn-warning" href="{{ route('admin.cars.edit', $car) }}">edit</a>
                             </td>
                             <td>
-                                <form action="{{ route('admin.cars.destroy', $car) }}" method="POST"> @csrf @method('DELETE')
-                                    <button class="btn btn-danger " type="submit" value="delete">delete</button> </form>
+                                <form action="{{ route('admin.cars.destroy', $car) }}" method="POST"> @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger " type="submit" value="delete">delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
