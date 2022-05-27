@@ -119,6 +119,6 @@ class CarController extends Controller
     {
         $car->delete();
 
-        return redirect()->route('cars.index');
+        return redirect()->route('admin.cars.index');
     }
 }

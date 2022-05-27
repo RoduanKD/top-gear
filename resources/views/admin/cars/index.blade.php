@@ -19,8 +19,7 @@
                             alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{ $car->brand }} {{ $car->model }}</h5>
-                            <p class="card-text"> {{ $car->category->name }}
-                                <hr>
+                            <p class="card-text">
                                 {{ $car->description }}
                             </p>
 

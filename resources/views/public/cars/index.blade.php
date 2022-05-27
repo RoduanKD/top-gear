@@ -22,7 +22,7 @@
                     <div class="col-md-4">
                         <a href="{{ route('cars.show', $car) }}">
                             <h4>{{ $car->brand }} {{ $car->model }}</h4>
-                            <h6>{{ $car->category->name }}</h6>
+                            {{-- <h6>{{ $car->category->name }}</h6> --}}
                         </a>
                     </div>
                 @endforeach
