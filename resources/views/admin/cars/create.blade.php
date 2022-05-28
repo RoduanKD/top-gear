@@ -26,7 +26,7 @@
 @section('content')
     <section class="section py-10" style="padding-bottom: 50px">
         <div class="container">
-            <form action="{{ route('admin.cars.store') }}" method="POST">
+            <form action="{{ route('admin.cars.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="brand">Brand</label>
@@ -112,7 +112,7 @@
 
                 <div class="form-check">
                     <input name="is_new" type="checkbox" class="form-check-input @error('is_new') is-invalid @enderror"
-                        id="is_new" value="1">
+                        id="is_new" value="1" {{ old('is_new') ? 'checked' : '' }}>
                     <label class="form-check-label" for="is_new">This is a new car?</label>
                     @error('is_new')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -124,6 +124,14 @@
                     <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
                         rows="5">{{ old('description') }}</textarea>
                     @error('description')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="featured_image">Featured image</label>
+                    <input class="form-control @error('featured_image') is-invalid @enderror" type="file" name="featured_image" id="featured_image" accept="image/*">
+                    @error('featured_image')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

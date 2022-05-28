@@ -21,6 +21,7 @@
                 @foreach ($cars as $car)
                     <div class="col-md-4">
                         <a href="{{ route('cars.show', $car) }}">
+                            <img src="/storage/{{ $car->featured_image }}" alt="" width="100%">
                             <h4 style="color: dodgerblue; font-size: 14pt; font-weight: bol;">{{ $car->brand }} {{ $car->model }}</h4>
                         </a>
                             <table class="table">

@@ -51,9 +51,12 @@ class CarController extends Controller
             'country'       => 'required',
             'is_new'        => 'boolean|nullable',
             'description'   => 'required|string',
+            'featured_image'=> 'required|file|image',
         ]);
 
-        // $validated['description'] = clean($validated['description']);
+
+        $validated['featured_image'] = $request->file('featured_image')->store('/', 'public');
+
         $car = Car::create($validated);
 
         return redirect()->route('admin.cars.index');

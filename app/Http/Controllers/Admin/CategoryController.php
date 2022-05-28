@@ -38,11 +38,14 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|min:4|max:255',
+            'name' => 'required|min:3|max:255',
             'capacity' => 'required|numeric|min:2',
         ]);
 
         $category = Category::create($validated);
+
+        session()->flash('message', 'The category was added successfully');
+        session()->flash('message-type', 'success');
 
         return redirect()->route('admin.categories.index');
     }
@@ -80,12 +83,12 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name'       =>  'required|min:4|max:255',
-            'seats_num'       =>  'required|numeric|min:2',
+            'capacity'       =>  'required|numeric|min:2',
         ]);
 
         $category->update($validated);
 
-        return redirect()->route('categories.index');
+        return redirect()->route('admin.categories.index');
     }
 
     /**

@@ -26,7 +26,7 @@ Route::view('/contact-us', 'pages.contact')->name('contact');
 
 Route::post('/contact-us', [MessageController::class, 'store'])->name('messages.store');
 Route::resource('cars', PublicCarController::class);
-Route::get('categories/allcars', [PublicCategoryController::class, 'index'])->name('catgeroy.allcars');
+Route::get('categories', [PublicCategoryController::class, 'index'])->name('categories.index');
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 

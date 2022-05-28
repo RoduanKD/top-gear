@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Add a new category')
+@section('title', 'Edit:' . $category->name)
 
 @section('content')
     <section class="section py-10" style="padding-bottom: 50px">
         <div class="container">
-            <form action="{{ route('categories.update', $category) }}" method="POST">
+            <form action="{{ route('admin.categories.update', $category) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
