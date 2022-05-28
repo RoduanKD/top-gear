@@ -22,7 +22,8 @@
                     <div class="col-md-4">
                         <a href="{{ route('cars.show', $car) }}">
                             <h4 style="color: dodgerblue; font-size: 14pt; font-weight: bol;">{{ $car->brand }} {{ $car->model }}</h4>
-                                <table class="table">
+                        </a>
+                            <table class="table">
                                     <thead>
                                         <th colspan="2" class="text-center">Category</th>
                                     </thead>
@@ -38,7 +39,6 @@
 
                                     </tbody>
                                 </table>
-                        </a>
                     </div>
                 @endforeach
             </div>
