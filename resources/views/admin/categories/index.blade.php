@@ -52,6 +52,7 @@
                     @endforelse
                 </tbody>
             </table>
+            <div class="pagination justify-content-center" style="margin:20px 0">{{ $categories->links() }}</div>
         </div>
     </section>
 @endsection

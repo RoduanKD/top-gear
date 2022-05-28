@@ -46,6 +46,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="pagination justify-content-center" style="margin:20px 0">{{ $cars->links() }}</div>
         </div>
     </section>
 @endsection
