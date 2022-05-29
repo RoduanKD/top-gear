@@ -48,8 +48,9 @@ class CarController extends Controller
             'model'         => 'required',
             'category_id'   => 'required|numeric|exists:categories,id',
             'price'         => 'required|numeric|min:100000',
-            'colors'        => 'required|array',
+            'colors'        => 'required_without:new_colors|array|nullable',
             'colors.*'      => 'required|numeric|exists:colors,id',
+            'new_colors'    => 'required_without:colors|nullable|string',
             'gear_type'     => 'required',
             'year'          => 'required',
             'country'       => 'required',
@@ -68,6 +69,16 @@ class CarController extends Controller
             $file->toMediaCollection();
         });
         $car->colors()->attach($request->colors);
+
+        if ($request->filled('new_colors')) {
+            // convert the string to array
+            $colors = explode(',', $request->new_colors);
+            foreach ($colors as $color) {
+                $color = trim($color);
+                $model = Color::firstOrCreate(['name' => $color]);
+                $car->colors()->attach($model);
+            }
+        }
 
         return redirect()->route('admin.cars.index');
     }

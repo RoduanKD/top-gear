@@ -30,6 +30,8 @@ class CarController extends Controller
             });
         }
 
+        // Homework: add colors filter
+
         $cars = $query->paginate(6);
         $categories = Category::has('cars')->get();
 

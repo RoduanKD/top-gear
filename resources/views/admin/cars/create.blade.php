@@ -138,6 +138,13 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label>new Car colors (comma speprated)</label>
+                        <input name="new_colors" type="text" class="form-control @error('new_colors') is-invalid @enderror">
+                        @error('new_colors')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
             </div>
             <div class="form-check pb-5">
