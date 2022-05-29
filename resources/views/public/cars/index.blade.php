@@ -10,7 +10,10 @@
                         <select name="category" class="custom-select col-sm" style="width: 25%">
                             <option value="">All</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ $category->id == request()->category ? 'selected':'' }}>{{ $category->name }} ({{ $category->cars->count() }})</option>
+                                <option value="{{ $category->id }}"
+                                    {{ $category->id == request()->category ? 'selected' : '' }}>{{ $category->name }}
+                                    ({{ $category->cars->count() }})
+                                </option>
                             @endforeach
                         </select>
                         <button type="submit" class="btn btn-sm btn-success">Filter</button>
@@ -20,26 +23,18 @@
             <div class="row">
                 @foreach ($cars as $car)
                     <div class="col-md-4">
-                        <a href="{{ route('cars.show', $car) }}">
-                            <img src="/storage/{{ $car->featured_image }}" alt="" width="100%">
-                            <h4 style="color: dodgerblue; font-size: 14pt; font-weight: bol;">{{ $car->brand }} {{ $car->model }}</h4>
-                                <table class="table">
-                                    <thead>
-                                        <th colspan="2" class="text-center">Category</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><b>Name : </b> </td>
-                                            <td>{{ $car->category->name }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Capacity : </b> </td>
-                                            <td>{{ $car->category->capacity }}</td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                        </a>
+                        <div class="card cardhov my-2" style="width: 18rem;">
+                            <img class="card-img-top" src="/storage/{{ $car->featured_image }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $car->brand }} {{ $car->model }}</h5>
+                                <p class="card-text">
+                                    {{ $car->description }}
+                                </p>
+                                <a href="{{ route('cars.show', $car) }}" class="btn ma-2"
+                                    style="background-color: #161C34; color:white; margin-top:10px;"> show more
+                                    info</a>
+                            </div>
+                        </div>
                     </div>
                 @endforeach
             </div>
