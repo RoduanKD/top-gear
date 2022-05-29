@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', 'Add a new car')
@@ -6,8 +5,11 @@
 @push('css')
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet" @endpush
-    @push('js') <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet"
+@endpush
+
+@push('js')
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
@@ -19,10 +21,12 @@
                 height: 100
             });
         });
-    </script> @endpush
+    </script>
+@endpush
+
     @section('content') <section class="section py-10" style="padding-bottom: 50px">
     <div class="container my-5">
-        <form action="{{ route('admin.cars.store') }}" method="POST">
+        <form action="{{ route('admin.cars.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col">
@@ -112,7 +116,6 @@
 
             <div class="row">
                 <div class="col">
-
                     <div class="form-group">
                         <label for="country">Country</label>
                         <input type="text" class="form-control @error('country') is-invalid @enderror" id="country"
@@ -140,7 +143,7 @@
             </div>
             <div class="form-check pb-5">
                 <input name="is_new" type="checkbox" class="form-check-input @error('is_new') is-invalid @enderror"
-                    id="is_new" value="1">
+                    id="is_new" value="1" {{ old('is_new') ? 'checked' : '' }}>
                 <label class="form-check-label" for="is_new">This is a new car?</label>
                 @error('is_new')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -151,6 +154,14 @@
                 <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description"
                     rows="5">{{ old('description') }}</textarea>
                 @error('description')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="featured_image">Featured image</label>
+                <input class="form-control @error('featured_image') is-invalid @enderror" type="file" name="featured_image"
+                    id="featured_image" accept="image/*">
+                @error('featured_image')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title' . ' - ' . $car->brand)
+@section('title', $car->brand . ' ' . $car->model)
 
 @section('content')
     <section>
@@ -26,10 +26,11 @@
         </div>
     </section>
 @endsection
-<style scoped>
+
+@push('css')
+<style>
     h4 {
         display: inline;
-        /* margin: 30px; */
     }
-
 </style>
+@endpush
