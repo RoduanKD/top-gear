@@ -130,8 +130,15 @@
 
                 <div class="form-group">
                     <label for="featured_image">Featured image</label>
-                    <input class="form-control @error('featured_image') is-invalid @enderror" type="file" name="featured_image" id="featured_image" accept="image/*">
+                    <input class="form-control @error('featured_image') is-invalid @enderror" type="file" name="featured_image" id="featured_image" accept="image/*" >
                     @error('featured_image')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="form-group">
+                    <label for="images">images</label>
+                    <input class="form-control @error('images') is-invalid @enderror" type="file" name="images[]" id="images" accept="image/*" multiple>
+                    @error('images')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
