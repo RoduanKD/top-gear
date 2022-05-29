@@ -11,15 +11,18 @@
                 </div>
             </div>
             <div class="card mb-3">
-                <img src="https://d.newsweek.com/en/full/1949339/tesla-model-s.jpg?w=1600&h=900&q=88&f=e5d09ec2030e76aba072a36c90568476"
+                <img src="{{ $car->featured_image }}"
                     class="card-img-top" alt="...">
+                @foreach ($car->getMedia() as $media)
+                    {{ $media }}
+                @endforeach
                 <div class="card-body">
                     <h1 class="card-title text-primary"> Basic Info </h1>
                     <p class="card-text">
                     <h4>PRICE:</h4> {{ $car->price }} SYP <br>
                     <h4>COLOR:</h4> {{ $car->colors }} <br>
                     <h4>COUNTRY:</h4>{{ $car->country }} <br>
-                    <h4>MORE DETIALS:</h4> {{ $car->description }} <br>
+                    <h4>MORE DETIALS:</h4> {!! $car->description !!} <br>
                     </p>
                 </div>
             </div>

@@ -16,13 +16,10 @@
                 <div class="col-md-4">
                     <div class="card cardhov my-2" style="width: 18rem;">
                         <img class="card-img-top"
-                            src="https://d.newsweek.com/en/full/1949339/tesla-model-s.jpg?w=1600&h=900&q=88&f=e5d09ec2030e76aba072a36c90568476"
+                            src="{{ $car->featured_image }}"
                             alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{ $car->brand }} {{ $car->model }}</h5>
-                            <p class="card-text">
-                                {{ $car->description }}
-                            </p>
                             <a href="{{ route('admin.cars.show', $car) }}" class="text-primary stretched-link"> show more
                                 info
                             </a>

@@ -16,7 +16,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
+        $cars = Car::latest()->paginate(10);
 
         return view('admin.cars.index', compact('cars'));
     }
@@ -52,12 +52,17 @@ class CarController extends Controller
             'is_new'        => 'boolean|nullable',
             'description'   => 'required|string',
             'featured_image'=> 'required|file|image',
+            'images'        => 'required|array',
+            'images.*'      => 'required|file|image'
         ]);
 
 
         $validated['featured_image'] = $request->file('featured_image')->store('/', 'public');
 
         $car = Car::create($validated);
+        $car->addAllMediaFromRequest()->each(function ($file) {
+            $file->toMediaCollection();
+        });
 
         return redirect()->route('admin.cars.index');
     }
