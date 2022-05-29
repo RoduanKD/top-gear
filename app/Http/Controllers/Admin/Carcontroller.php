@@ -92,7 +92,9 @@ class CarController extends Controller
     public function edit(Car $car)
     {
         $categories = Category::all('id', 'name', 'capacity');
-        return view('admin.cars.edit', compact('car', 'categories'));
+        $colors = Color::all(['id', 'name']);
+
+        return view('admin.cars.edit', compact('car', 'categories', 'colors'));
     }
 
     /**
@@ -109,7 +111,8 @@ class CarController extends Controller
             'model'         => 'required',
             'category_id'   => 'required',
             'price'         => 'required|numeric|min:100000',
-            'colors'        => 'required',
+            'colors'        => 'required|array',
+            'colors.*'      => 'required|numeric|exists:colors,id',
             'gear_type'     => 'required',
             'year'          => 'required',
             'country'       => 'required',
@@ -118,6 +121,7 @@ class CarController extends Controller
         ]);
 
         $car->update($validated);
+        $car->colors()->sync($request->colors);
 
         return redirect()->route('admin.cars.index');
     }

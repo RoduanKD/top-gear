@@ -114,7 +114,6 @@
 
                 <div class="row">
                     <div class="col">
-
                         <div class="form-group">
                             <label for="country">Country</label>
                             <input type="text" class="form-control @error('country') is-invalid @enderror" id="country"
@@ -127,11 +126,10 @@
                     <div class="col">
                         <div class="form-group">
                             <label>Car colors</label>
-                            <select multiple name="colors" class="form-control @error('colors') is-invalid @enderror">
-                                <option selected value="black">Black</option>
-                                <option value="blue">Blue</option>
-                                <option value="whtie">White</option>
-                                <option value="grey">Grey</option>
+                            <select multiple name="colors[]" class="form-control @error('colors') is-invalid @enderror">
+                                @foreach ($colors as $color)
+                                    <option value={{ $color->id }} {{ $car->colors->contains($color) ? 'selected':'' }}>{{ $color->name }}</option>
+                                @endforeach
                             </select>
                             @error('colors')
                                 <div class="invalid-feedback">{{ $message }}</div>
