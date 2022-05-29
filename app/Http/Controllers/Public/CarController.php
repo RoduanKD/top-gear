@@ -25,8 +25,8 @@ class CarController extends Controller
         if ($request->filled('q')) {
             $query->where(function ($q) use ($request) {
                 $q->Where('brand', 'like', "%$request->q%")
-                ->orWhere('model', 'like', "%$request->q%")
-                ->orWhere('colors', 'like', "%$request->q%");
+                    ->orWhere('model', 'like', "%$request->q%")
+                    ->orWhere('colors', 'like', "%$request->q%");
             });
         }
 

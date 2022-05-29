@@ -3,49 +3,65 @@
 @section('title', 'Cars');
 
 @section('content')
-    <section class="section layout_padding">
-        <div class="container">
-            <h1>All Cars</h1>
-            <div class="float-right">
-                <form action="{{ route('admin.cars.create') }}" method="GET"> @csrf <button class="btn btn-success "
-                        type="submit" value="add">Add</button> </form>
+    <div class="container my-5">
+        <div class="full">
+            <h1>Here's Your Cars !</h1>
+            <div class="col">
+                <h3><a href="{{ route('admin.cars.create') }}" class="text-primary stretched-link">Add more!</a></h3>
             </div>
-            <table class="table">
-                <thead>
-                    <th>id</th>
-                    <th>brand</th>
-                    <th>model</th>
-                    <th>colors</th>
-                    <th>gear_type</th>
-                    <th>year</th>
-                    <th>country</th>
-                    <th>is_new</th>
-                    <th colspan="2">action</th>
-                </thead>
-                <tbody>
-                    @foreach ($cars as $car)
-                        <tr>
-                            <td>{{ $car->id }}</td>
-                            <td>{{ $car->brand }}</td>
-                            <td><a href="{{ route('admin.cars.show', $car->id) }}">{{ $car->model }}</a></td>
-                            <td>{{ $car->colors }}</td>
-                            <td>{{ $car->gear_type }}</td>
-                            <td>{{ $car->year }}</td>
-                            <td>{{ $car->country }}</td>
-                            <td>{{ $car->is_new }}</td>
-                            <td>
-                                <a class="btn btn-warning" href="{{ route('admin.cars.edit', $car) }}">edit</a>
-                            </td>
-                            <td>
-                                <form action="{{ route('admin.cars.destroy', $car) }}" method="POST"> @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger " type="submit" value="delete">delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
         </div>
-    </section>
+
+        <div class="row">
+            @foreach ($cars as $car)
+                <div class="col-md-4">
+                    <div class="card cardhov my-2" style="width: 18rem;">
+                        <img class="card-img-top"
+                            src="https://d.newsweek.com/en/full/1949339/tesla-model-s.jpg?w=1600&h=900&q=88&f=e5d09ec2030e76aba072a36c90568476"
+                            alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $car->brand }} {{ $car->model }}</h5>
+                            <p class="card-text">
+                                {{ $car->description }}
+                            </p>
+                            <a href="{{ route('admin.cars.show', $car) }}" class="text-primary stretched-link"> show more
+                                info
+                            </a>
+                            <div class="row my-2">
+                                <div class="col">
+                                    <a class="btn ma-2" href="{{ route('admin.cars.edit', $car) }}"
+                                        style="background-color: #161C34; color:white;">
+                                        Edit
+                                    </a>
+                                </div>
+                                <div class="col">
+                                    <form action="{{ route('admin.cars.destroy', $car) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE') <button style="background-color: #F36B2A; color:white;"
+                                            class="btn mb-2" type="submit" data-toggle="modal"
+                                            data-target="#exampleModal">Delete</button> </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            @endforeach
+        </div>
+    </div>
 @endsection
+
+@push('css')
+    <style>
+        .card:hover {
+            border-radius: 0.75rem;
+            border-color: #161C34;
+            transition-delay: 0.1s
+        }
+
+        h1 {
+            color: #161C34;
+        }
+
+    </style>
+@endpush

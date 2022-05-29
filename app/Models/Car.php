@@ -19,7 +19,6 @@ class Car extends Model
 
     protected $casts = [
         'is_new' => 'boolean',
-        'description' => CleanHtml::class,
     ];
 
     public function category()
