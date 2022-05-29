@@ -11,8 +11,7 @@
                 </div>
             </div>
             <div class="card mb-3">
-                <img src="https://d.newsweek.com/en/full/1949339/tesla-model-s.jpg?w=1600&h=900&q=88&f=e5d09ec2030e76aba072a36c90568476"
-                    class="card-img-top" alt="...">
+                <img src="/storage/{{ $car->featured_image }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h1 class="card-title text-primary"> Basic Info </h1>
                     <p class="card-text">

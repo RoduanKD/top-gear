@@ -24,10 +24,9 @@
                         <td class="text-center row">
                             <div class="btn-group" role="group">
                                 <div class="col-md-6 padding-right: 5px padding-left: 5px;">
-                                    <form action="{{ route('admin.messages.show', $message) }}" method="GET">
-                                        @csrf
-                                        <button type="submit" value="edit" class="btn btn-sm btn-warning">Show</button>
-                                    </form>
+                                    <a href="{{ route('admin.messages.show', $message) }}" class="btn btn-sm btn-warning">
+                                        Show
+                                    </a>
                                 </div>
                                 <div class="col-md-6 padding-right: 5px padding-left: 5px;">
                                     <form action="{{ route('admin.messages.destroy', $message) }}" method="POST">
