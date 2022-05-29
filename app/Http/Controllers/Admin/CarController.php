@@ -40,6 +40,7 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $validated = $request->validate([
             'brand'         => 'required',
             'model'         => 'required',
@@ -52,12 +53,19 @@ class CarController extends Controller
             'is_new'        => 'boolean|nullable',
             'description'   => 'required|string',
             'featured_image'=> 'required|file|image',
+            'images' => 'required|array',
+            'images.*' => 'required|file|image'
         ]);
 
 
+        //$validated['featured_image'] = $request->file('featured_image')->store('/', 'public');
         $validated['featured_image'] = $request->file('featured_image')->store('/', 'public');
 
         $car = Car::create($validated);
+
+        $car->addAllMediaFromRequest()->each(function ($file){
+            $file->toMediaCollection();
+        });
 
         return redirect()->route('admin.cars.index');
     }
