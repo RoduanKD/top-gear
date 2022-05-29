@@ -18,7 +18,7 @@
                     <h4>PRICE:</h4> {{ $car->price }} SYP <br>
                     <h4>COLOR:</h4> {{ $car->colors }} <br>
                     <h4>COUNTRY:</h4>{{ $car->country }} <br>
-                    <h4>MORE DETIALS:</h4> {{ $car->desscription }} <br>
+                    <h4>MORE DETIALS:</h4> {!! $car->description !!} <br>
                     </p>
                 </div>
             </div>

@@ -28,7 +28,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $car->brand }} {{ $car->model }}</h5>
                                 <p class="card-text">
-                                    {{ $car->description }}
+                                    {!! $car->description !!}
                                 </p>
                                 <a href="{{ route('cars.show', $car) }}" class="btn ma-2"
                                     style="background-color: #161C34; color:white; margin-top:10px;"> show more
