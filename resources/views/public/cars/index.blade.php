@@ -10,7 +10,9 @@
                         <select name="category">
                             <option value="">All</option>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{ $category->id == request()->category ? 'selected':'' }}>{{ $category->name }} ({{ $category->cars->count() }})</option>
+                                <option value="{{ $category->id }}"
+                                    {{ $category->id == request()->category ? 'selected' : '' }}>{{ $category->name }}
+                                    ({{ $category->cars->count() }})</option>
                             @endforeach
                         </select>
                         <button type="submit">Filter</button>
@@ -20,10 +22,23 @@
             <div class="row">
                 @foreach ($cars as $car)
                     <div class="col-md-4">
-                        <a href="{{ route('cars.show', $car) }}">
-                            <h4>{{ $car->brand }} {{ $car->model }}</h4>
-                            {{-- <h6>{{ $car->category->name }}</h6> --}}
-                        </a>
+
+                        <div class="card cardhov my-2" style="width: 18rem;">
+                            <img class="card-img-top"
+                                src="https://d.newsweek.com/en/full/1949339/tesla-model-s.jpg?w=1600&h=900&q=88&f=e5d09ec2030e76aba072a36c90568476"
+                                alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $car->brand }} {{ $car->model }}</h5>
+                                <p class="card-text">
+                                    {{ $car->description }}
+                                </p>
+
+                                <a href="{{ route('cars.show', $car) }}"   class="btn ma-2"
+                                    style="background-color: #161C34; color:white; margin-top:10px;"> show more
+                                    info</a>
+                            </div>
+                        </div>
+
                     </div>
                 @endforeach
             </div>
