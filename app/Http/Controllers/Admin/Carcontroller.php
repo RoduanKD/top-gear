@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Car;
 use App\Models\Category;
+use App\Models\Color;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -29,7 +30,9 @@ class CarController extends Controller
     public function create()
     {
         $categories = Category::all(['id', 'name', 'capacity']);
-        return view('admin.cars.create', compact('categories'));
+        $colors = Color::all(['id', 'name']);
+
+        return view('admin.cars.create', compact('categories', 'colors'));
     }
 
     /**
@@ -45,7 +48,8 @@ class CarController extends Controller
             'model'         => 'required',
             'category_id'   => 'required|numeric|exists:categories,id',
             'price'         => 'required|numeric|min:100000',
-            'colors'        => 'required',
+            'colors'        => 'required|array',
+            'colors.*'      => 'required|numeric|exists:colors,id',
             'gear_type'     => 'required',
             'year'          => 'required',
             'country'       => 'required',
@@ -63,6 +67,7 @@ class CarController extends Controller
         $car->addAllMediaFromRequest()->each(function ($file) {
             $file->toMediaCollection();
         });
+        $car->colors()->attach($request->colors);
 
         return redirect()->route('admin.cars.index');
     }

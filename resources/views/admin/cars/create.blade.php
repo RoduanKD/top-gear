@@ -129,11 +129,10 @@
                 <div class="col">
                     <div class="form-group">
                         <label>Car colors</label>
-                        <select multiple name="colors" class="form-control @error('colors') is-invalid @enderror">
-                            <option selected value="black">Black</option>
-                            <option value="blue">Blue</option>
-                            <option value="whtie">White</option>
-                            <option value="grey">Grey</option>
+                        <select multiple name="colors[]" class="form-control @error('colors') is-invalid @enderror">
+                            @foreach ($colors as $color)
+                                <option value={{ $color->id }}>{{ $color->name }}</option>
+                            @endforeach
                         </select>
                         @error('colors')
                             <div class="invalid-feedback">{{ $message }}</div>

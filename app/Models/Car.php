@@ -29,6 +29,10 @@ class Car extends Model implements HasMedia
         return $this->belongsTo(Category::class);
     }
 
+    public function colors() {
+        return $this->belongsToMany(Color::class);
+    }
+
     /**
      * Get the user's first name.
      *
