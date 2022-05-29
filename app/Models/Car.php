@@ -19,6 +19,7 @@ class Car extends Model
 
     protected $casts = [
         'is_new' => 'boolean',
+        'description' => CleanHtml::class,
     ];
 
     public function category()
@@ -35,6 +36,13 @@ class Car extends Model
     {
         return Attribute::make(
             get: fn ($value) => $value ? 'yes':'no',
+        );
+    }
+
+    protected function featuredImage (): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value ? "/storage/$value" : 'https://www.willow-car-sales.co.uk/wp-content/uploads/2019/11/placeholder-image-1.jpg',
         );
     }
 }

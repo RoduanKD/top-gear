@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="card mb-3">
-                <img src="/storage/{{ $car->featured_image }}" class="card-img-top" alt="...">
+                <img src="{{ $car->featured_image }}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h1 class="card-title text-primary"> Basic Info </h1>
                     <p class="card-text">

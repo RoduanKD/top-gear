@@ -24,12 +24,9 @@
                 @foreach ($cars as $car)
                     <div class="col-md-4">
                         <div class="card cardhov my-2" style="width: 18rem;">
-                            <img class="card-img-top" src="/storage/{{ $car->featured_image }}" alt="Card image cap">
+                            <img class="card-img-top" src="{{ $car->featured_image }}" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $car->brand }} {{ $car->model }}</h5>
-                                <p class="card-text">
-                                    {!! $car->description !!}
-                                </p>
                                 <a href="{{ route('cars.show', $car) }}" class="btn ma-2"
                                     style="background-color: #161C34; color:white; margin-top:10px;"> show more
                                     info</a>
