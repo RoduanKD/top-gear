@@ -25,12 +25,14 @@ class CarController extends Controller
         if ($request->filled('q')) {
             $query->where(function ($q) use ($request) {
                 $q->Where('brand', 'like', "%$request->q%")
-                ->orWhere('model', 'like', "%$request->q%")
-                ->orWhere('colors', 'like', "%$request->q%");
+                    ->orWhere('model', 'like', "%$request->q%")
+                    ->orWhere('colors', 'like', "%$request->q%");
             });
         }
 
-        $cars = $query->paginate(1);
+        // Homework: add colors filter
+
+        $cars = $query->paginate(6);
         $categories = Category::has('cars')->get();
 
         return view('public.cars.index', compact('cars', 'categories'));
@@ -65,7 +67,7 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
-        //
+        return view('public.cars.show', compact('car'));
     }
 
     /**

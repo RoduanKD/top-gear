@@ -29,87 +29,115 @@
             <form action="{{ route('admin.cars.update', $car) }}" method="POST">
                 @csrf
                 @method('PUT')
-                <div class="form-group">
-                    <label for="brand">Brand</label>
-                    <input type="text" class="form-control @error('brand') is-invalid @enderror" id="brand" name="brand"
-                        placeholder="Audi" value="{{ old('brand', $car->brand) }}">
-                    @error('brand')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="model">Model</label>
-                    <input type="text" class="form-control @error('model') is-invalid @enderror" id="model" name="model"
-                        placeholder="A4" value="{{ old('model', $car->model) }}">
-                    @error('model')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label>Car category</label>
-                    <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
-                        @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" {{ old('category_id', $car->category_id) == $category->id ? 'selected':'' }}>{{ $category->name }} ({{ $category->capacity }})</option>
-                        @endforeach
-                    </select>
-                    @error('category_id')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="price">Price</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">SYP</span>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="brand">Brand</label>
+                            <input type="text" class="form-control @error('brand') is-invalid @enderror" id="brand"
+                                name="brand" placeholder="Audi" value="{{ old('brand', $car->brand) }}">
+                            @error('brand')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-                        <input name="price" id="price" type="number" min="10000000" step="500000"
-                            class="form-control @error('price') is-invalid @enderror"
-                            value="{{ old('price', $car->price, 25000000) }}">
                     </div>
-                    @error('price')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label>Car colors</label>
-                    <select name="colors" class="form-control @error('colors') is-invalid @enderror" multiple>
-                        <option value="black" selected>Black</option>
-                    </select>
-                    @error('colors')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="model">Model</label>
+                            <input type="text" class="form-control @error('model') is-invalid @enderror" id="model"
+                                name="model" placeholder="A4" value="{{ old('model', $car->model) }}">
+                            @error('model')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Gear Type</label>
-                    <select name="gear_type" class="form-control @error('gear_type') is-invalid @enderror">
-                        <option value="auto">Automatic</option>
-                        <option value="manual">Manual</option>
-                    </select>
-                    @error('gear_type')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">SYP</span>
+                                </div>
+                                <input name="price" id="price" type="number" min="10000000" step="500000"
+                                    class="form-control @error('price') is-invalid @enderror"
+                                    value="{{ old('price', $car->price, 25000000) }}">
+                            </div>
+                            @error('price')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Car category</label>
+                            <select name="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ old('category_id', $car->category_id) == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }} ({{ $category->capacity }})</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="year">Year</label>
-                    <input name="year" id="year" type="number" min="1880"
-                        class="form-control @error('year') is-invalid @enderror" value="{{ old('year', $car->year) }}">
-                    @error('year')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Gear Type</label>
+                            <select name="gear_type" class="form-control @error('gear_type') is-invalid @enderror">
+                                <option value="auto">Automatic</option>
+                                <option value="manual">Manual</option>
+                            </select>
+                            @error('gear_type')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                            <input name="year" id="year" type="number" min="1880"
+                                class="form-control @error('year') is-invalid @enderror"
+                                value="{{ old('year', $car->year) }}">
+                            @error('year')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="country">Country</label>
-                    <input type="text" class="form-control @error('country') is-invalid @enderror" id="country"
-                        name="country" placeholder="Germany" value="{{ old('country', $car->country) }}">
-                    @error('country')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <input type="text" class="form-control @error('country') is-invalid @enderror" id="country"
+                                name="country" placeholder="Germany" value="{{ old('country', $car->country) }}">
+                            @error('country')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label>Car colors</label>
+                            <select multiple name="colors[]" class="form-control @error('colors') is-invalid @enderror">
+                                @foreach ($colors as $color)
+                                    <option value={{ $color->id }} {{ $car->colors->contains($color) ? 'selected':'' }}>{{ $color->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('colors')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
-
-                <div class="form-check">
+                <div class="form-check pb-5">
                     <input name="is_new" type="checkbox" class="form-check-input @error('is_new') is-invalid @enderror"
                         id="is_new" value="1" {{ old('is_new', $car->is_new == 'yes') ? 'checked':'' }}>
                     <label class="form-check-label" for="is_new">This is a new car?</label>
@@ -132,3 +160,5 @@
         </div>
     </section>
 @endsection
+
+

@@ -23,3 +23,9 @@
         </div>
     </div>
 </nav>
+<style>
+    .navbar {
+        background-color: #011f9e;
+    }
+
+</style>

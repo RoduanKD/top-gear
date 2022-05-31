@@ -13,7 +13,6 @@ class MessageController extends Controller
 
         return view('messages.index', compact('messages'));
     }
-
     public function show (Message $message)
     {
         return view('messages.show', compact('message'));

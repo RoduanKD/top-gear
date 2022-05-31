@@ -6,7 +6,7 @@
     <section class="section layout_padding">
         <div class="container">
             <h1>Received Messages</h1>
-            <table class="table">
+            <table class="table table-hover ">
                 <thead>
                         <th>id</th>
                         <th>name</th>
@@ -24,10 +24,9 @@
                         <td class="text-center row">
                             <div class="btn-group" role="group">
                                 <div class="col-md-6 padding-right: 5px padding-left: 5px;">
-                                    <form action="{{ route('admin.messages.show', $message) }}" method="GET">
-                                        @csrf
-                                        <button type="submit" value="edit" class="btn btn-sm btn-warning">Show</button>
-                                    </form>
+                                    <a href="{{ route('admin.messages.show', $message) }}" class="btn btn-sm btn-warning">
+                                        Show
+                                    </a>
                                 </div>
                                 <div class="col-md-6 padding-right: 5px padding-left: 5px;">
                                     <form action="{{ route('admin.messages.destroy', $message) }}" method="POST">
@@ -41,7 +40,9 @@
                     @endforeach
                 </tbody>
             </table>
+
         </div>
     </section>
 
 @endsection
+

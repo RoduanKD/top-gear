@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [HomeController::class, 'welcome'])->name('home');
+Route::view('/about', 'pages.about')->name('about');
+Route::view('/contact-us', 'pages.contact')->name('contact');
 
 Route::get('/', [HomeController::class, 'welcome'])->name('home');
 

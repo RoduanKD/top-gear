@@ -69,7 +69,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('admin.categories.edit',compact('category'));
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -83,7 +83,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name'       =>  'required|min:4|max:255',
-            'capacity'       =>  'required|numeric|min:2',
+            'capacity'   =>  'required|numeric|min:2',
         ]);
 
         $category->update($validated);
