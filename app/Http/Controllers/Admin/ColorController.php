@@ -72,8 +72,8 @@ class ColorController extends Controller
      */
     public function edit(Color $color)
     {
-        dd('this is edit function');
 
+        return view('admin.colors.edit', compact('color'));
     }
 
     /**
@@ -85,8 +85,16 @@ class ColorController extends Controller
      */
     public function update(Request $request, Color $color)
     {
-        dd('this is update function');
+        $validated = $request->validate([
+            'name'  => 'required|min:3|max:12|string',
+         ]);
 
+        $color->update($validated);
+
+        session()->flash('message', 'Color Updated Successfully');
+        session()->flash('message-type', 'success');
+
+        return redirect()->route('admin.colors.index');
     }
 
     /**
@@ -97,7 +105,8 @@ class ColorController extends Controller
      */
     public function destroy(Color $color)
     {
-        dd('this is destroy function');
+        $color->delete();
 
+        return redirect()->route('admin.colors.index');
     }
 }
