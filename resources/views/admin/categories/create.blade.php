@@ -36,11 +36,23 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="images">Images</label>
+                            <input class="form-control @error('images') is-invalid @enderror" type="file" name="images[]"
+                                id="images" accept="image/*" multiple>
+                            @error('images')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col">
 
+                    </div>
+                </div>
                 <button type="submit" class="btn" style="background-color: #F36B2A; color:white;">Submit</button>
             </form>
         </div>
     </section>
 @endsection
-
-

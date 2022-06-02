@@ -15,8 +15,11 @@
 
                     <div class="card cardhov my-2" style="width: 18rem;">
                         <img class="card-img-top"
-                            src="https://i0.wp.com/52.0.170.206/wp-content/uploads/2021/09/Types-of-Car.jpg?fit=1280%2C720"
+                            src="{{ $category->images }}"
                             alt="Card image cap">
+                        {{-- <img class="card-img-top"
+                            src="https://i0.wp.com/52.0.170.206/wp-content/uploads/2021/09/Types-of-Car.jpg?fit=1280%2C720"
+                            alt="Card image cap"> --}}
                         <div class="card-body">
                             <h3 class="card-title">{{ $category->name }} ({{ $category->cars->count() }})</h3>
                             <p class="card-text">Capacity: {{ $category->capacity }}</p>
