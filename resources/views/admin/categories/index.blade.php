@@ -5,7 +5,7 @@
         <div class="full">
             <h1>Here's Your Categories !</h1>
             <div class="col">
-                <h3><a href="{{ route('admin.categories.create') }}" class="text-primary stretched-link">Add more!</a></h3>
+                @if($categories->count()!=0)<h3><a href="{{ route('admin.categories.create') }}" class="text-primary stretched-link">Add more!</a></h3>@endif
             </div>
         </div>
 
@@ -56,7 +56,9 @@
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button style="background-color: #F36B2A; color:white;" class="btn mb-2" type="submit" data-toggle="modal" data-target="#exampleModal">
+                                                        <button style="background-color: #F36B2A; color:white;"
+                                                            class="btn mb-2" type="submit" data-toggle="modal"
+                                                            data-target="#exampleModal">
                                                             Delete
                                                         </button>
                                                     </form>
@@ -67,10 +69,13 @@
                                 </div>
                             </div>
                         </div>
-                    @endforelse
-                </tbody>
-            </table>
-            <div class="pagination justify-content-center" style="margin:20px 0">{{ $categories->links() }}</div>
+                    </div>
+                </div>
+                @empty
+                <div class="col">
+                    There are no categories now, <a href="{{ route('admin.categories.create') }}">please create one</a>!
+                </div>
+            @endforelse
         </div>
     </div>
 @endsection
