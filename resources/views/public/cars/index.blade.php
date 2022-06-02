@@ -6,17 +6,40 @@
             <div class="row py-5">
                 <div class="col-12">
                     <form action="">
-                        <input type="hidden" name="q" value="{{ request()->q }}">
-                        <select name="category" class="custom-select col-sm" style="width: 25%">
-                            <option value="">All</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}"
-                                    {{ $category->id == request()->category ? 'selected' : '' }}>{{ $category->name }}
-                                    ({{ $category->cars->count() }})
-                                </option>
-                            @endforeach
-                        </select>
-                        <button type="submit" class="btn btn-sm btn-success">Filter</button>
+                        <div class="row">
+                            <div class="col">
+                                {{-- <div class="form-group">
+                                    <input type="hidden" name="q" value="{{ request()->q }}">
+                                    <label>Categories Filter :</label>
+                                    <select name="category" class="custom-select col-md" style="width: 25%">
+                                        <option value="">All</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}"
+                                                {{ $category->id == request()->category ? 'selected' : '' }}>{{ $category->name }}
+                                                ({{ $category->cars->count() }})
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <button type="submit" class="btn btn-sm btn-success">Filter</button>
+                                </div> --}}
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <input type="hidden" name="q" value="{{ request()->q }}">
+                                    <label>Colors Filter :</label>
+                                    <select name="color" class="custom-select col-mmd" style="width: 25%">
+                                        <option value="">All</option>
+                                        @foreach ($colors as $color)
+                                            <option value="{{ $color->id }}"
+                                                {{ $color->id == request()->color ? 'selected' : '' }}>{{ $color->name }}
+                                                ({{ $color->cars->count() }})
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <button type="submit" class="btn btn-sm btn-success">Filter</button>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Models\Car;
 use App\Models\Category;
+use App\Models\Color;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -34,8 +35,9 @@ class CarController extends Controller
 
         $cars = $query->paginate(6);
         $categories = Category::has('cars')->get();
+        $colors = Color::has('cars')->get();
 
-        return view('public.cars.index', compact('cars', 'categories'));
+        return view('public.cars.index', compact('cars', 'categories','colors'));
     }
 
     /**
