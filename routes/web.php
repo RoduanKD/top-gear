@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Public\CarController as PublicCarController;
@@ -39,4 +40,6 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
     Route::resource('cars', CarController::class);
     Route::resource('categories', CategoryController::class);
+
+    Route::resource('colors', ColorController::class);
 });
