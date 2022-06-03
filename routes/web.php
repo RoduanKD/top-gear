@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\HomeController;
@@ -39,6 +40,16 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middl
 
 Route::get('register', [RegisteredUserController::class, 'create'])->name('register')->middleware('auth');
 Route::post('register', [RegisteredUserController::class, 'store'])->middleware('auth');
+
+Route::get('forgot-password', [ForgotPasswordController::class, 'show'])->middleware('guest')->name('password.request');
+Route::post('forgot-password', [ForgotPasswordController::class, 'store'])->middleware('guest')->name('password.request');
+
+Route::get('/reset-password/{token}', function ($token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->middleware('guest')->name('password.reset');
+
+Route::post('reset-password', [ForgotPasswordController::class, 'reset']);
+
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'auth'], function () {
 
