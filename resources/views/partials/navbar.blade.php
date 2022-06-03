@@ -20,12 +20,34 @@
                 value="{{ request()->q }}" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+            @auth
+                <div class="nav-item px-3">
+                    Hello {{ auth()->user()->name }}
+                </div>
+                <form class="form-inline my-2 my-lg-0" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+                </form>
+            @endauth
+
+            @guest
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                    </li>
+                </ul>
+            @endguest
         </div>
     </div>
 </nav>
+@push('css')
 <style>
     .navbar {
         background-color: #011f9e;
     }
 
 </style>
+@endpush
