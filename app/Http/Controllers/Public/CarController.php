@@ -7,6 +7,7 @@ use App\Models\Car;
 use App\Models\Category;
 use App\Models\Color;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CarController extends Controller
 {
@@ -22,15 +23,29 @@ class CarController extends Controller
         if ($request->filled('category')) {
             $query->where('category_id', $request->category);
         }
+            //dd($request->color);
+        if ($request->filled('color')) {
+            $carsID = DB::table('Car_Color')
+                ->where('color_id', $request->color)
+                ->get();
+
+                $selectedIds=[];
+                //dd($carsID);
+                foreach($carsID as $carID){
+                    array_push($selectedIds,$carID->car_id);
+                };
+                //dd($selectedIds);
+             $query->whereIn('id', $selectedIds)->get();
+             //dd($query);
+        }
 
         if ($request->filled('q')) {
             $query->where(function ($q) use ($request) {
                 $q->Where('brand', 'like', "%$request->q%")
                     ->orWhere('model', 'like', "%$request->q%")
-                    ->orWhere('colors', 'like', "%$request->q%");
+                    ->orWhere('color', 'like', "%$request->q%");
             });
         }
-
         // Homework: add colors filter
 
         $cars = $query->paginate(6);

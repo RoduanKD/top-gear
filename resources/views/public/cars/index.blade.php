@@ -8,7 +8,7 @@
                     <form action="">
                         <div class="row">
                             <div class="col">
-                                {{-- <div class="form-group">
+                                <div class="form-group">
                                     <input type="hidden" name="q" value="{{ request()->q }}">
                                     <label>Categories Filter :</label>
                                     <select name="category" class="custom-select col-md" style="width: 25%">
@@ -20,23 +20,19 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    <button type="submit" class="btn btn-sm btn-success">Filter</button>
-                                </div> --}}
+                                    <button type="submit" class="btn btn-md btn-success">Filter</button>
+                                </div>
                             </div>
                             <div class="col">
-                                <div class="form-group">
+                                <div class="form-group float-inline">
                                     <input type="hidden" name="q" value="{{ request()->q }}">
                                     <label>Colors Filter :</label>
-                                    <select name="color" class="custom-select col-mmd" style="width: 25%">
-                                        <option value="">All</option>
+                                    <ul class="from-input">
                                         @foreach ($colors as $color)
-                                            <option value="{{ $color->id }}"
-                                                {{ $color->id == request()->color ? 'selected' : '' }}>{{ $color->name }}
-                                                ({{ $color->cars->count() }})
-                                            </option>
+                                            <li><input type="checkbox" name="color[]" value="{{ $color->id }}"
+                                                {{ $color->id == request()->color ? 'checked' : '' }}>{{ $color->name }} ({{ $color->cars->count() }})</li>
                                         @endforeach
-                                    </select>
-                                    <button type="submit" class="btn btn-sm btn-success">Filter</button>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
