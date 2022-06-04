@@ -50,4 +50,11 @@ class User extends Authenticatable
             set: fn ($value) => Hash::make($value),
         );
     }
+
+    protected function featuredImage (): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value ? "/storage/$value" : 'https://th.bing.com/th/id/R.a4a1b34e9d9c2e4148674a8f2f02e294?rik=JaAU7TXQS2r7Gw&riu=http%3a%2f%2fpasmart.ir%2fassets%2fimages%2fmembers%2fuser-placeholder_man.png&ehk=xXaouMHsmH2Z0kCHmZGBMgVeLT%2byOtUI%2brN86T2eauM%3d&risl=&pid=ImgRaw&r=0',
+        );
+    }
 }
