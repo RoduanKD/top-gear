@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ App::currentLocale() }}" dir="{{ App::isLocale('ar') ? 'rtl' : 'ltr' }}">
 
 <head>
     <!-- basic -->
@@ -14,7 +14,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    @if (App::isLocale('ar'))
+        <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.5.3/css/bootstrap.min.css">
+    @else
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+    @endif
     <!-- style css -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- Responsive-->
