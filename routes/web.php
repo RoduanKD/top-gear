@@ -59,4 +59,6 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'auth'], fu
 
     Route::resource('cars', CarController::class);
     Route::resource('categories', CategoryController::class);
+
+    Route::resource('users', UserController::class);
 });
