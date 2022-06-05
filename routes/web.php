@@ -68,5 +68,6 @@ Route::get('/language/{lang}', function ($lang) {
     session(['lang' => $lang]);
     App::setLocale($lang);
 
-    return redirect()->route('home', ['locale' => $lang]);
+    $previous_route = app('router')->getRoutes()->match(app('request')->create(url()->previous()))->getName();
+    return redirect()->route($previous_route, $lang);
 })->name('locale.update');
