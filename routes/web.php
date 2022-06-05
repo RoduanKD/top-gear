@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Public\CarController as PublicCarController;
 use App\Http\Controllers\Public\CategoryController as PublicCategoryController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +51,17 @@ Route::get('/reset-password/{token}', function ($token) {
 
 Route::post('reset-password', [ForgotPasswordController::class, 'reset'])->name('password.change');
 
+
+Route::get('/language/{locale}', function ($locale) {
+    if (! in_array($locale, ['en', 'ar'])) {
+        return redirect()->route('home')->with('message', 'This lang is not supported');
+    }
+
+    session(['lang' => $locale]);
+    App::setLocale($locale);
+
+    return redirect()->route('home');
+})->name('locale.update');
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'auth'], function () {
 
