@@ -48,7 +48,7 @@ Route::get('/reset-password/{token}', function ($token) {
     return view('auth.reset-password', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
 
-Route::post('reset-password', [ForgotPasswordController::class, 'reset']);
+Route::post('reset-password', [ForgotPasswordController::class, 'reset'])->name('password.change');
 
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'auth'], function () {
