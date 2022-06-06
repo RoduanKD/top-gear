@@ -62,14 +62,11 @@ class CarController extends Controller
             'images.*'      => 'required|file|image'
         ]);
 
-
+        //dd($validated);
         //$validated['featured_image'] = $request->file('featured_image')->store('/', 'public');
         $validated['featured_image'] = $request->file('featured_image')->store('/', 'public');
 
         $car = Car::create($validated);
-        $car->addAllMediaFromRequest()->each(function ($file) {
-            $file->toMediaCollection();
-        });
         $car->colors()->attach($request->colors);
 
         if ($request->filled('new_colors')) {
@@ -81,11 +78,9 @@ class CarController extends Controller
                 $car->colors()->attach($model);
             }
         }
-
         $car->addAllMediaFromRequest()->each(function ($file){
             $file->toMediaCollection();
         });
-
         return redirect()->route('admin.cars.index');
     }
 
@@ -97,6 +92,7 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
+        //dd($car);
         return view('admin.cars.show', compact('car'));
     }
 
