@@ -39,10 +39,10 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label for="images">Images</label>
-                            <input class="form-control @error('images') is-invalid @enderror" type="file" name="images[]"
-                                id="images" accept="image/*" multiple>
-                            @error('images')
+                            <label for="image">Image</label>
+                            <input class="form-control @error('image') is-invalid @enderror" type="file" name="image"
+                                id="image" accept="image/*" >
+                            @error('image')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

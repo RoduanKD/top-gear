@@ -40,15 +40,14 @@ class CategoryController extends Controller
         $validated = $request->validate([
             'name' => 'required|min:3|max:255',
             'capacity' => 'required|numeric|min:2',
-            'images'        => 'required|array',
-            'images.*'      => 'required|file|image'
+            'image'      => 'required|file|image'
         ]);
 
+        dd($request);
         $category = Category::create($validated);
 
-        $category->addAllMediaFromRequest()->each(function ($file){
-            $file->toMediaCollection();
-        });
+        $category->addMediaFromRequest('image')
+            ->toMediaCollection();
 
         session()->flash('message', 'The category was added successfully');
         session()->flash('message-type', 'success');

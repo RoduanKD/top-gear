@@ -12,7 +12,7 @@ class Category extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
-    protected $guarded = ['images'];
+    protected $guarded = ['image'];
 
     protected $fillable = ['name', 'capacity'];
 
