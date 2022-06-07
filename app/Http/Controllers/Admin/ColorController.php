@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Color;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreColorRequest;
+use App\Http\Requests\UpdateColorRequest;
 
 class ColorController extends Controller
 {
@@ -35,21 +37,21 @@ class ColorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreColorRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreColorRequest $request)
     {
         $validated = $request->validate([
-           'name'  => 'required|min:3|max:12|string',
-        ]);
+            'name'  => 'required|min:3|max:12|string',
+         ]);
 
-        $color = Color::create($validated);
+         $color = Color::create($validated);
 
-        session()->flash('message', 'The color was added successfully');
-        session()->flash('message-type', 'success');
+         session()->flash('message', 'The color was added successfully');
+         session()->flash('message-type', 'success');
 
-        return redirect()->route('admin.colors.index');
+         return redirect()->route('admin.colors.index');
     }
 
     /**
@@ -79,11 +81,11 @@ class ColorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateColorRequest  $request
      * @param  \App\Models\Color  $color
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Color $color)
+    public function update(UpdateColorRequest $request, Color $color)
     {
         $validated = $request->validate([
             'name'  => 'required|min:3|max:12|string',

@@ -11,10 +11,20 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-                                placeholder="Economy" value="{{ old('name', $category->name) }}">
-                            @error('name')
+                            <label for="name_en">English Name</label>
+                            <input type="text" class="form-control @error('name_en') is-invalid @enderror" id="name_en" name="name_en"
+                                placeholder="Economy" value="{{ old('name_en', $category->name_en) }}">
+                            @error('name_en')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="name_ar">Arabic Name</label>
+                            <input type="text" class="form-control @error('name_ar') is-invalid @enderror" id="name_ar" name="name_ar"
+                                placeholder="Economy" value="{{ old('name_ar', $category->name_ar) }}">
+                            @error('name_ar')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

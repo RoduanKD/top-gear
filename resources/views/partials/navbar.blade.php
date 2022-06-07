@@ -13,6 +13,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('locale.update', App::isLocale('en') ? 'ar' : 'en') }}">{{ App::isLocale('en') ? 'Arabic' : 'English' }}</a>
+                </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" action="{{ route('cars.index') }}" method="GET">
                 <input type="hidden" name="category" value="{{ request()->category }}">

@@ -9,6 +9,7 @@
                         <div class="col-md-5">
                             <div class="full slider_cont_section">
                                 <h4>Welcome</h4>
+                                <h4>{{ __('messages.hero.welcome') }}</h4>
                                 <h3>AVALON</h3>
                                 <p>It is a long established fact that a reader will be distracted by the
                                     readable content of a page when looking at its layout.</p>

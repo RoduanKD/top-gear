@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -35,16 +36,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|min:3|max:255',
-            'capacity' => 'required|numeric|min:2',
-            'image'      => 'required|file|image'
-        ]);
-
-        dd($request);
-        $category = Category::create($validated);
+        $category = Category::create($request->validated());
 
         $category->addMediaFromRequest('image')
             ->toMediaCollection();
@@ -87,7 +81,8 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $validated = $request->validate([
-            'name'       =>  'required|min:4|max:255',
+            'name_en'    =>  'required|min:4|max:255',
+            'name_ar'    =>  'required|min:4|max:255',
             'capacity'   =>  'required|numeric|min:2',
         ]);
 

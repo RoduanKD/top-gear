@@ -9,22 +9,14 @@
                 <div class="col-md-8">
                     <div class="card">
                         <h1 class="card-header">
-                            Forgot Password
+                            Reset Password
                         </h1>
                         <div class="card-body">
                           <div class="card-text">
-                            <form class="form" action="{{ route('login') }}" method="POST">
+                            <form class="form" action="{{ route('password.change') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="token" value="{{ $token }}">
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-                                        placeholder="Someone@topgear.test" value="{{ old('email', 'admin@topgear.test') }}" required>
-                                    @error('email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
+                                <input type="hidden" name="email" value="{{ request()->query('email') }}">
                                 <div class="form-group">
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password"
