@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateColorRequest extends FormRequest
@@ -13,7 +14,8 @@ class UpdateColorRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
+
     }
 
     /**
@@ -24,7 +26,7 @@ class UpdateColorRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'  => 'required|min:3|max:12|string',
         ];
     }
 }
