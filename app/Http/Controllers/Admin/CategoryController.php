@@ -39,6 +39,7 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
+        //dd($request);
         $category = Category::create($request->validated());
 
         $category->addMediaFromRequest('image')

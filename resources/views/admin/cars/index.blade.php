@@ -15,9 +15,9 @@
             @foreach ($cars as $car)
                 <div class="col-md-4">
                     <div class="card cardhov my-2" style="width: 18rem;">
-                        <img class="card-img-top"
-                            src="{{ $car->featured_image }}"
-                            alt="Card image cap">
+
+                        {{ $car->getFirstMedia() }}
+
                         <div class="card-body">
                             <h5 class="card-title">{{ $car->brand }} {{ $car->model }}</h5>
                             <a href="{{ route('admin.cars.show', $car) }}" class="text-primary stretched-link"> show more
@@ -36,7 +36,6 @@
                                         @method('DELETE') <button style="background-color: #F36B2A; color:white;"
                                             class="btn mb-2" type="submit" data-toggle="modal"
                                             data-target="#exampleModal">Delete</button> </form>
-
                                 </div>
                             </div>
                         </div>
