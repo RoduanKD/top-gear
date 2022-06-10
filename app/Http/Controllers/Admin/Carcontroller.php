@@ -19,6 +19,7 @@ class CarController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Car::class);
         $cars = Car::latest()->paginate(1);
 
         return view('admin.cars.index', compact('cars'));
@@ -85,6 +86,7 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
+        $this->authorize('update', $car);
         $categories = Category::all('id', 'name_en', 'capacity');
         $colors = Color::all(['id', 'name']);
 
@@ -100,6 +102,7 @@ class CarController extends Controller
      */
     public function update(Request $request, Car $car)
     {
+        $this->authorize('update', $car);
         $validated = $request->validate([
             'brand'         => 'required|min:3',
             'model'         => 'required',
