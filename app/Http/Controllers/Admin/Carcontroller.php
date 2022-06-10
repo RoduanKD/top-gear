@@ -19,7 +19,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::latest()->paginate(10);
+        $cars = Car::latest()->paginate(6);
 
         return view('admin.cars.index', compact('cars'));
     }
@@ -46,7 +46,7 @@ class CarController extends Controller
     public function store(StoreCarRequest $request)
     {
         //dd($request->year);
-        $request['featured_image'] = $request->file('featured_image')->store('/', 'public');
+        //$request['featured_image'] = $request->file('featured_image')->store('/', 'public');
 
         $car = Car::create($request->validated());
         $car->colors()->attach($request->colors);
@@ -86,7 +86,7 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
-        $categories = Category::all('id', 'name', 'capacity');
+        $categories = Category::all('id', 'name_en', 'capacity');
         $colors = Color::all(['id', 'name']);
 
         return view('admin.cars.edit', compact('car', 'categories', 'colors'));
@@ -129,6 +129,7 @@ class CarController extends Controller
      */
     public function destroy(Car $car)
     {
+        //dd($car);
         $car->delete();
 
         return redirect()->route('admin.cars.index');

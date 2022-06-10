@@ -11,8 +11,6 @@
                 </div>
             </div>
             <div class="card mb-3">
-                <img src="{{ $car->featured_image }}"
-                    class="card-img-top" alt="...">
                 @foreach ($car->getMedia() as $media)
                     {{ $media }}
                 @endforeach

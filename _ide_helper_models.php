@@ -24,7 +24,6 @@ namespace App\Models{
  * @property int $year
  * @property string $country
  * @property array $description
- * @property string $featured_image
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Category|null $category
@@ -40,7 +39,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereCountry($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Car whereFeaturedImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereGearType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereIsNew($value)
@@ -57,8 +55,10 @@ namespace App\Models{
  * App\Models\Category
  *
  * @property int $id
- * @property string $name
+ * @property string $name_en
+ * @property string $name_ar
  * @property int $capacity
+ * @property string $image
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Car[] $cars
@@ -71,7 +71,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereCapacity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Category whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereNameAr($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Category whereNameEn($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereUpdatedAt($value)
  */
 	class Category extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}

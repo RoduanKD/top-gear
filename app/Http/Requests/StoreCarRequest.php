@@ -37,7 +37,6 @@ class StoreCarRequest extends FormRequest
             'country'       => 'required',
             'is_new'        => 'boolean|nullable',
             'description'   => 'required|string',
-            'featured_image'=> 'required|file|image',
             'images'        => 'required|array',
             'images.*'      => 'required|file|image'
         ];

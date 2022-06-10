@@ -23,20 +23,21 @@ class CarController extends Controller
         if ($request->filled('category')) {
             $query->where('category_id', $request->category);
         }
-            //dd($request->color);
+
         if ($request->filled('color')) {
+
             $carsID = DB::table('Car_Color')
-                ->where('color_id', $request->color)
+                ->whereIn('color_id', $request->color)
                 ->get();
 
                 $selectedIds=[];
-                //dd($carsID);
+
                 foreach($carsID as $carID){
                     array_push($selectedIds,$carID->car_id);
                 };
-                //dd($selectedIds);
+
              $query->whereIn('id', $selectedIds)->get();
-             //dd($query);
+
         }
 
         if ($request->filled('q')) {

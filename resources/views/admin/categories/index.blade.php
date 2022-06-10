@@ -22,7 +22,7 @@
                         <div class="card-body">
                             <h3 class="card-title">{{ $category->name }} ({{ $category->cars->count() }})</h3>
                             <p class="card-text">Capacity: {{ $category->capacity }}</p>
-                            <a href="..." class="text-primary stretched-link"> show Cars in Category</a>
+                            <a href="{{ route('categories.index',$category) }}" class="text-primary stretched-link"> show Cars in Category</a>
                             <div class="row my-2">
                                 <div class="col">
                                     <form action="{{ route('admin.categories.edit', $category) }}" method="PUT"> @csrf

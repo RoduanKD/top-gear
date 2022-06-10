@@ -11,12 +11,17 @@
                 </div>
             </div>
             <div class="card mb-3">
-                <img src="{{ $car->featured_image }}" class="card-img-top" alt="...">
+                @foreach ($car->getMedia() as $media)
+
+                {{ $media }}
+
+                @endforeach
+
                 <div class="card-body">
                     <h1 class="card-title text-primary"> Basic Info </h1>
                     <p class="card-text">
                     <h4>PRICE:</h4> {{ $car->price }} SYP <br>
-                    <h4>COLOR:</h4> {{ $car->colors }} <br>
+                    <h4>COLOR:</h4> {{ $car->colors->reduce(function ($carry, $color) {return $carry . $color->name . ', ';}) }} <br>
                     <h4>COUNTRY:</h4>{{ $car->country }} <br>
                     <h4>MORE DETIALS:</h4> {!! $car->description !!} <br>
                     </p>
