@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Color;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreColorRequest;
 use App\Http\Requests\UpdateColorRequest;
 
@@ -16,7 +17,10 @@ class ColorController extends Controller
      */
     public function index()
     {
-        //
+        //dd('this is index function');
+        $colors = Color::all();
+
+        return view('admin.colors.index', compact('colors'));
     }
 
     /**
@@ -26,7 +30,8 @@ class ColorController extends Controller
      */
     public function create()
     {
-        //
+        //dd('this is create function');
+        return view('admin.colors.create');
     }
 
     /**
@@ -37,7 +42,12 @@ class ColorController extends Controller
      */
     public function store(StoreColorRequest $request)
     {
-        //
+        $category = Color::create($request->validated());
+
+         session()->flash('message', 'The color was added successfully');
+         session()->flash('message-type', 'success');
+
+         return redirect()->route('admin.colors.index');
     }
 
     /**
@@ -48,6 +58,7 @@ class ColorController extends Controller
      */
     public function show(Color $color)
     {
+        dd('this is show function');
         //
     }
 
@@ -59,7 +70,8 @@ class ColorController extends Controller
      */
     public function edit(Color $color)
     {
-        //
+
+        return view('admin.colors.edit', compact('color'));
     }
 
     /**
@@ -71,7 +83,13 @@ class ColorController extends Controller
      */
     public function update(UpdateColorRequest $request, Color $color)
     {
-        //
+
+        $color->update($request->validated());
+
+        session()->flash('message', 'Color Updated Successfully');
+        session()->flash('message-type', 'success');
+
+        return redirect()->route('admin.colors.index');
     }
 
     /**
@@ -82,6 +100,8 @@ class ColorController extends Controller
      */
     public function destroy(Color $color)
     {
-        //
+        $color->delete();
+
+        return redirect()->route('admin.colors.index');
     }
 }

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -16,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(2);
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -39,6 +40,9 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $category = Category::create($request->validated());
+
+        $category->addMediaFromRequest('image')
+                ->toMediaCollection();
 
         session()->flash('message', 'The category was added successfully');
         session()->flash('message-type', 'success');
@@ -71,19 +75,14 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateCategoryRequest  $request
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $validated = $request->validate([
-            'name_en'    =>  'required|min:4|max:255',
-            'name_ar'    =>  'required|min:4|max:255',
-            'capacity'   =>  'required|numeric|min:2',
-        ]);
 
-        $category->update($validated);
+        $category->update($request->validated());
 
         return redirect()->route('admin.categories.index');
     }

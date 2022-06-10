@@ -11,6 +11,7 @@ class CategoryController extends Controller
 {
     public function index(Request $request)
     {
+        // dd($request);
         $query = Car::latest();
 
         if ($request->filled('category')) {
@@ -25,7 +26,7 @@ class CategoryController extends Controller
             });
         }
 
-        $cars = $query->paginate(1);
+        $cars = $query->paginate(4);
 
         $categories = Category::has('cars')->get();
 

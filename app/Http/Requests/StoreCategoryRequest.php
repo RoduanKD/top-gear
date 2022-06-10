@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCategoryRequest extends FormRequest
@@ -13,7 +14,8 @@ class StoreCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
+
     }
 
     /**
@@ -24,8 +26,10 @@ class StoreCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3|max:255',
+            'name_en'  => 'required|min:3|max:255',
+            'name_ar'  => 'required|min:3|max:255',
             'capacity' => 'required|numeric|min:2',
+            'image'    => 'required|file|image',
         ];
     }
 }
