@@ -7,6 +7,8 @@ use App\Models\Car;
 use App\Models\Category;
 use App\Models\Color;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCarRequest;
+use App\Http\Requests\UpdateCarRequest;
 
 class CarController extends Controller
 {
@@ -17,7 +19,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::latest()->paginate(10);
+        $cars = Car::latest()->paginate(1);
 
         return view('admin.cars.index', compact('cars'));
     }
@@ -29,7 +31,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        $categories = Category::all(['id', 'name', 'capacity']);
+        $categories = Category::all(['id', 'name_en', 'capacity']);
         $colors = Color::all(['id', 'name']);
 
         return view('admin.cars.create', compact('categories', 'colors'));
@@ -41,33 +43,9 @@ class CarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCarRequest $request)
     {
-        $validated = $request->validate([
-            'brand'         => 'required',
-            'model'         => 'required',
-            'category_id'   => 'required|numeric|exists:categories,id',
-            'price'         => 'required|numeric|min:100000',
-            'colors'        => 'required_without:new_colors|array|nullable',
-            'colors.*'      => 'required|numeric|exists:colors,id',
-            'new_colors'    => 'required_without:colors|nullable|string',
-            'gear_type'     => 'required',
-            'year'          => 'required',
-            'country'       => 'required',
-            'is_new'        => 'boolean|nullable',
-            'description'   => 'required|string',
-            'featured_image'=> 'required|file|image',
-            'images'        => 'required|array',
-            'images.*'      => 'required|file|image'
-        ]);
-
-
-        $validated['featured_image'] = $request->file('featured_image')->store('/', 'public');
-
-        $car = Car::create($validated);
-        $car->addAllMediaFromRequest()->each(function ($file) {
-            $file->toMediaCollection();
-        });
+        $car = Car::create($request->validated());
         $car->colors()->attach($request->colors);
 
         if ($request->filled('new_colors')) {
@@ -80,6 +58,10 @@ class CarController extends Controller
             }
         }
 
+        $car->addAllMediaFromRequest()->each(function ($file){
+            $file->toMediaCollection();
+        });
+
         return redirect()->route('admin.cars.index');
     }
 
@@ -91,6 +73,7 @@ class CarController extends Controller
      */
     public function show(Car $car)
     {
+        //dd($car);
         return view('admin.cars.show', compact('car'));
     }
 
@@ -102,7 +85,7 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
-        $categories = Category::all('id', 'name', 'capacity');
+        $categories = Category::all('id', 'name_en', 'capacity');
         $colors = Color::all(['id', 'name']);
 
         return view('admin.cars.edit', compact('car', 'categories', 'colors'));
@@ -145,6 +128,7 @@ class CarController extends Controller
      */
     public function destroy(Car $car)
     {
+        //dd($car);
         $car->delete();
 
         return redirect()->route('admin.cars.index');

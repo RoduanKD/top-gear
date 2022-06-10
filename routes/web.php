@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisteredUserController;
@@ -41,8 +43,8 @@ Route::prefix('{locale}')->middleware('lang')->group(function () {
     Route::post('login', [LoginController::class, 'authenticate'])->middleware('guest');
     Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
-    Route::get('register', [RegisteredUserController::class, 'create'])->name('register')->middleware('auth');
-    Route::post('register', [RegisteredUserController::class, 'store'])->middleware('auth');
+    Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('register', [RegisteredUserController::class, 'store']);
 
     Route::get('forgot-password', [ForgotPasswordController::class, 'show'])->middleware('guest')->name('password.request');
     Route::post('forgot-password', [ForgotPasswordController::class, 'store'])->middleware('guest')->name('password.request');
@@ -61,6 +63,10 @@ Route::prefix('{locale}')->middleware('lang')->group(function () {
 
         Route::resource('cars', CarController::class);
         Route::resource('categories', CategoryController::class);
+
+        Route::resource('colors', ColorController::class);
+
+        Route::resource('users', UserController::class);
     });
 });
 

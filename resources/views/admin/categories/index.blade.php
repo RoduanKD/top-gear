@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
+@section('title', 'Categories')
+
 @section('content')
     <div class="container my-5">
         <div class="full">
             <h1>Here's Your Categories !</h1>
             <div class="col">
-                <h3><a href="{{ route('admin.categories.create') }}" class="text-primary stretched-link">Add more!</a></h3>
+                @if($categories->count()!=0)<h3><a href="{{ route('admin.categories.create') }}" class="text-primary stretched-link">Add more!</a></h3>@endif
             </div>
         </div>
 
@@ -13,14 +15,14 @@
             @forelse ($categories as $category)
                 <div class="col-md-4">
 
-                    <div class="card cardhov my-2" style="width: 18rem;">
-                        <img class="card-img-top"
-                            src="https://i0.wp.com/52.0.170.206/wp-content/uploads/2021/09/Types-of-Car.jpg?fit=1280%2C720"
-                            alt="Card image cap">
+                    <div class="card cardhov my-2">
+
+                        {{ $category->getFirstMedia() }}
+
                         <div class="card-body">
                             <h3 class="card-title">{{ $category->name }} ({{ $category->cars->count() }})</h3>
                             <p class="card-text">Capacity: {{ $category->capacity }}</p>
-                            <a href="..." class="text-primary stretched-link"> show Cars in Category</a>
+                            <a href="{{ route('categories.index',$category) }}" class="text-primary stretched-link"> show Cars in Category</a>
                             <div class="row my-2">
                                 <div class="col">
                                     <form action="{{ route('admin.categories.edit', $category) }}" method="PUT"> @csrf
@@ -56,7 +58,9 @@
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button style="background-color: #F36B2A; color:white;" class="btn mb-2" type="submit" data-toggle="modal" data-target="#exampleModal">
+                                                        <button style="background-color: #F36B2A; color:white;"
+                                                            class="btn mb-2" type="submit" data-toggle="modal"
+                                                            data-target="#exampleModal">
                                                             Delete
                                                         </button>
                                                     </form>
@@ -68,15 +72,14 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
-
-            @empty
+                @empty
                 <div class="col">
                     There are no categories now, <a href="{{ route('admin.categories.create') }}">please create one</a>!
                 </div>
             @endforelse
         </div>
+        {{ $categories->links() }}
     </div>
 @endsection
 

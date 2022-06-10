@@ -14,10 +14,10 @@
         <div class="row">
             @foreach ($cars as $car)
                 <div class="col-md-4">
-                    <div class="card cardhov my-2" style="width: 18rem;">
-                        <img class="card-img-top"
-                            src="{{ $car->featured_image }}"
-                            alt="Card image cap">
+                    <div class="card cardhov my-2">
+
+                        {{ $car->getFirstMedia() }}
+
                         <div class="card-body">
                             <h5 class="card-title">{{ $car->brand }} {{ $car->model }}</h5>
                             <a href="{{ route('admin.cars.show', $car) }}" class="text-primary stretched-link"> show more
@@ -31,20 +31,49 @@
                                     </a>
                                 </div>
                                 <div class="col">
-                                    <form action="{{ route('admin.cars.destroy', $car) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE') <button style="background-color: #F36B2A; color:white;"
-                                            class="btn mb-2" type="submit" data-toggle="modal"
-                                            data-target="#exampleModal">Delete</button> </form>
-
+                                    <button style="background-color: #F36B2A; color:white;"
+                                            class="btn mb-2" data-toggle="modal"
+                                            data-target="#delete-modal">Delete</button>
+                                            <div class="modal fade" id="delete-modal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">DELETE THIS CAR
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ARE YOU SURE YOU WANT TO DELETE THIS CAR!
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                    <form action="{{ route('admin.cars.destroy', $car) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button style="background-color: #F36B2A; color:white;"
+                                                            class="btn mb-2" type="submit" data-toggle="modal"
+                                                            data-target="#exampleModal">
+                                                            Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             @endforeach
         </div>
+        {{ $cars->links() }}
     </div>
 @endsection
 

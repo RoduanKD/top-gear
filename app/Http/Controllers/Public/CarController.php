@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Public;
 use App\Http\Controllers\Controller;
 use App\Models\Car;
 use App\Models\Category;
+use App\Models\Color;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CarController extends Controller
 {
@@ -22,20 +24,33 @@ class CarController extends Controller
             $query->where('category_id', $request->category);
         }
 
+        if ($request->filled('color')) {
+            // $carsID = DB::table('Car_Color')
+            //     ->select('car_id')
+            //     ->whereIn('color_id', $request->color)
+            //     ->get();
+
+            //  $query->whereIn('id', $carsID->pluck('car_id'))->get();
+
+            $query->whereHas('colors', function ($q) use ($request){
+                $q->whereIn('id', $request->color);
+            });
+        }
+
         if ($request->filled('q')) {
             $query->where(function ($q) use ($request) {
                 $q->Where('brand', 'like', "%$request->q%")
                     ->orWhere('model', 'like', "%$request->q%")
-                    ->orWhere('colors', 'like', "%$request->q%");
+                    ->orWhere('color', 'like', "%$request->q%");
             });
         }
-
         // Homework: add colors filter
 
-        $cars = $query->paginate(6);
+        $cars = $query->paginate(1);
         $categories = Category::has('cars')->get();
+        $colors = Color::has('cars')->get();
 
-        return view('public.cars.index', compact('cars', 'categories'));
+        return view('public.cars.index', compact('cars', 'categories','colors'));
     }
 
     /**
