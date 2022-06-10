@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('{locale}')->middleware('lang')->group(function () {
+Route::prefix('{locale?}')->middleware('lang')->group(function () {
     Route::get('/', [HomeController::class, 'welcome'])->name('home');
     Route::view('/about', 'pages.about')->name('about');
     Route::view('/contact-us', 'pages.contact')->name('contact');
