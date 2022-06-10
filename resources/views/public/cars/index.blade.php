@@ -42,7 +42,7 @@
             <div class="row">
                 @foreach ($cars as $car)
                     <div class="col-md-4">
-                        <div class="card cardhov my-2" style="width: 18rem;">
+                        <div class="card cardhov my-2">
                             {{ $car->getFirstMedia() }}
                             <div class="card-body">
                                 <h5 class="card-title">{{ $car->brand }} {{ $car->model }}</h5>

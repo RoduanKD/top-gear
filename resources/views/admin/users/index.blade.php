@@ -14,7 +14,7 @@
         <div class="row">
             @foreach ($users as $user)
                 <div class="col-md-4">
-                    <div class="card cardhov my-2" style="width: 18rem;">
+                    <div class="card cardhov my-2">
                         <img class="card-img-top"
                             src="{{ $user->featured_image  }}"
                             alt="Card image cap">

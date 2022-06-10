@@ -15,7 +15,7 @@
             @forelse ($categories as $category)
                 <div class="col-md-4">
 
-                    <div class="card cardhov my-2" style="width: 18rem;">
+                    <div class="card cardhov my-2">
 
                         {{ $category->getFirstMedia() }}
 
