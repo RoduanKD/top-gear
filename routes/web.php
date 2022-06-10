@@ -66,7 +66,7 @@ Route::prefix('{locale?}')->middleware('lang')->group(function () {
 
         Route::resource('colors', ColorController::class);
 
-        Route::resource('users', UserController::class);
+        Route::resource('users', UserController::class)->middleware('is_admin');
     });
 });
 

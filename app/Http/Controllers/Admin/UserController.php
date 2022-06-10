@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        // $this->authorize('access-users');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +22,7 @@ class UserController extends Controller
     {
         $users = User::paginate(6);
         ///dd($user);
-        return view('admin.users.index',compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -29,7 +34,6 @@ class UserController extends Controller
     {
 
         return view('admin.users.create');
-
     }
 
     /**
@@ -40,6 +44,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'name'      => 'required|string|min:3|max:255',
             'email'     => 'required|email|unique:users',
@@ -83,12 +88,12 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //dd($request);
+
         $validated = $request->validate([
             'name'      => 'required|string|min:3|max:255',
             'email'     => 'required|exists:users,email',
         ]);
-            //dd($validated);
+        //dd($validated);
         $user->update($validated);
         return redirect()->route('admin.users.index');
     }
