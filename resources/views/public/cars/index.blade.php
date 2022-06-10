@@ -25,12 +25,11 @@
                             </div>
                             <div class="col">
                                 <div class="form-group float-inline">
-                                    <input type="hidden" name="q" value="{{ request()->q }}">
                                     <label>Colors Filter :</label>
                                     <ul class="from-input">
                                         @foreach ($colors as $color)
                                             <li><input type="checkbox" name="color[]" value="{{ $color->id }}"
-                                                {{ $color->id == request()->color ? 'checked' : '' }}>{{ $color->name }} ({{ $color->cars->count() }})</li>
+                                                {{ in_array($color->id, request()->color ?? []) ? 'checked' : '' }}>{{ $color->name }} ({{ $color->cars->count() }})</li>
                                         @endforeach
                                     </ul>
                                 </div>

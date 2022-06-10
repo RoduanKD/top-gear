@@ -45,9 +45,6 @@ class CarController extends Controller
      */
     public function store(StoreCarRequest $request)
     {
-        //dd($request->year);
-        //$request['featured_image'] = $request->file('featured_image')->store('/', 'public');
-
         $car = Car::create($request->validated());
         $car->colors()->attach($request->colors);
 
@@ -60,9 +57,11 @@ class CarController extends Controller
                 $car->colors()->attach($model);
             }
         }
+
         $car->addAllMediaFromRequest()->each(function ($file){
             $file->toMediaCollection();
         });
+
         return redirect()->route('admin.cars.index');
     }
 

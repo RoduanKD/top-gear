@@ -79,6 +79,7 @@
                 </div>
             @endforelse
         </div>
+        {{ $categories->links() }}
     </div>
 @endsection
 

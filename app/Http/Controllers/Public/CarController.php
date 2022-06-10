@@ -25,19 +25,16 @@ class CarController extends Controller
         }
 
         if ($request->filled('color')) {
+            // $carsID = DB::table('Car_Color')
+            //     ->select('car_id')
+            //     ->whereIn('color_id', $request->color)
+            //     ->get();
 
-            $carsID = DB::table('Car_Color')
-                ->whereIn('color_id', $request->color)
-                ->get();
+            //  $query->whereIn('id', $carsID->pluck('car_id'))->get();
 
-                $selectedIds=[];
-
-                foreach($carsID as $carID){
-                    array_push($selectedIds,$carID->car_id);
-                };
-
-             $query->whereIn('id', $selectedIds)->get();
-
+            $query->whereHas('colors', function ($q) use ($request){
+                $q->whereIn('id', $request->color);
+            });
         }
 
         if ($request->filled('q')) {
