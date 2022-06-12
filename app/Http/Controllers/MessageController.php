@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactThanks;
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class MessageController extends Controller
 {
@@ -33,6 +35,8 @@ class MessageController extends Controller
         $message->phone = $request->phone;
         $message->content = $request->content;
         $message->save();
+
+        Mail::to($request->email)->send(new ContactThanks);
 
         return redirect('/#contact');
     }
