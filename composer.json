@@ -10,7 +10,7 @@
         "doctrine/dbal": "^3.3",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.11",
-        "laravel/sanctum": "^2.14.1",
+        "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.7",
         "mews/purifier": "^3.3",
         "spatie/laravel-medialibrary": "^9.0.0",

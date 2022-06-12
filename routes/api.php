@@ -34,3 +34,17 @@ Route::get('/hello', function () {
 Route::post('/contact', [MessageController::class, 'store']);
 
 Route::apiResource('cars', CarController::class)->only(['index', 'show']);
+
+
+Route::post('/login', function (Request $request) {
+    $credentials = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required'],
+    ]);
+
+    if (Auth::attempt($credentials)) {
+        $token = $request->user()->createToken('auth');
+
+        return ['token' => $token->plainTextToken];
+    }
+});
