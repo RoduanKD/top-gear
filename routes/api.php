@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\MessageReceived;
+use App\Http\Controllers\Api\V1\CarController;
 use App\Http\Controllers\Api\V1\MessageController;
 use App\Models\Message;
 use Illuminate\Http\Request;
@@ -31,3 +32,5 @@ Route::get('/hello', function () {
 });
 
 Route::post('/contact', [MessageController::class, 'store']);
+
+Route::apiResource('cars', CarController::class)->only(['index', 'show']);
