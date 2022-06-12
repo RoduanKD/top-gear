@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Mail\ContactThanks;
 use App\Models\Message;
+use App\Models\User;
+use App\Notifications\MessageReceived;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -37,6 +39,7 @@ class MessageController extends Controller
         $message->save();
 
         Mail::to($request->email)->send(new ContactThanks);
+        User::first()->notify(new MessageReceived);
 
         return redirect('/#contact');
     }
