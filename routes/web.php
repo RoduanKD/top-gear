@@ -62,7 +62,7 @@ Route::prefix('{locale?}')->middleware('lang')->group(function () {
         Route::delete('messages/{message}', [MessageController::class, 'destroy'])->name('messages.destroy');
 
         Route::resource('cars', CarController::class);
-        Route::resource('categories', CategoryController::class)->middleware('can:update-user');
+        Route::resource('categories', CategoryController::class);
 
         Route::resource('colors', ColorController::class);
 
