@@ -1,9 +1,7 @@
 <?php
 
-use App\Events\MessageReceived;
 use App\Http\Controllers\Api\V1\CarController;
 use App\Http\Controllers\Api\V1\MessageController;
-use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
