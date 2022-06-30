@@ -9,6 +9,7 @@ use App\Models\Color;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCarRequest;
 use App\Http\Requests\UpdateCarRequest;
+use Illuminate\Support\Str;
 
 class CarController extends Controller
 {
@@ -46,7 +47,8 @@ class CarController extends Controller
      */
     public function store(StoreCarRequest $request)
     {
-        $car = Car::create($request->validated());
+        $slug = Str::slug($request->brand . ' ' . $request->model);
+        $car = Car::create($request->validated() + ['slug' => $slug]);
         $car->colors()->attach($request->colors);
 
         if ($request->filled('new_colors')) {
@@ -59,7 +61,7 @@ class CarController extends Controller
             }
         }
 
-        $car->addAllMediaFromRequest()->each(function ($file){
+        $car->addAllMediaFromRequest()->each(function ($file) {
             $file->toMediaCollection();
         });
 

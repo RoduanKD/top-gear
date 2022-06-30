@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('model');
             $table->string('brand');
+            $table->string('slug')->uniqe();
             $table->integer('price');
             $table->string('colors');
             $table->string('gear_type');

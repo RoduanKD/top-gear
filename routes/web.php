@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CarController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
@@ -67,6 +68,7 @@ Route::prefix('{locale?}')->middleware('lang')->group(function () {
         Route::resource('colors', ColorController::class);
 
         Route::resource('users', UserController::class)->middleware('is_admin');
+        Route::resource('media', MediaController::class)->only('destroy');
     });
 });
 
